@@ -282,19 +282,19 @@ export default function Home() {
           {/* 二つ目のカード */}
           <div className="w-full bg-white/20 dark:bg-black/30 rounded-2xl shadow-lg relative font-semibold text-lg mt-4 hoverable:hover:scale-110  js-map-container h-auto overflow-x-hidden" ref={overlayContainer}>
             <Image src={map} alt="地図のイラスト" className="h-72 w-auto mx-auto" />
-            <div className="top-4 left-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto">
+            <div className="top-4 left-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               経済
               <span className="block">{overlay.economics}</span>
             </div>
-            <div className="top-4 right-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto">
+            <div className="top-4 right-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               社・現福
               <span className="block">{overlay.health}</span>
             </div>
-            <div className="bottom-4 left-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto">
+            <div className="bottom-4 left-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               体育館
               <span className="block">{overlay.gym}</span>
             </div>
-            <div className="bottom-4 right-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto">
+            <div className="bottom-4 right-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               スポ健康
               <span className="block">{overlay.sport}</span>
             </div>
