@@ -218,7 +218,19 @@ export default function Home() {
           <SheetTitle className="text-center mt-3 text-xl">Menu</SheetTitle>
           <a className="mx-10 hover:underline text-black dark:text-white bg-white/60 dark:bg-black/80 dark:border-2 dark:border-white rounded-lg shadow p-2 block text-center will-change-auto"
             href='https://docs.google.com/forms/d/e/1FAIpQLScPysPRj60-S2v_zmFjrQF6YKlS0Qe200GSO4LnEMsiVbXxYg/viewform?usp=sf_link'>アプリご意見</a>
-          <p className="mx-10 share-btn hover:underline text-black dark:text-white bg-white/60 dark:bg-black/80 dark:border-2 dark:border-white rounded-lg shadow p-2 block text-center will-change-auto">アプリを共有</p>
+          <p className="mx-10 share-btn hover:underline text-black dark:text-white bg-white/60 dark:bg-black/80 dark:border-2 dark:border-white rounded-lg shadow p-2 block text-center will-change-auto" onClick={async ()=>{
+            if (navigator.share) {
+              try {
+                await navigator.share({
+                  title: 'たまっぷ',
+                  text: 'https://codemates123.github.io/homepage/tamap.html'
+                });
+                console.log('Page shared successfully');
+              } catch (error) {
+                console.error('Error sharing:', error);
+              }
+            }
+          }}>アプリを共有</p>
           <a className="mx-10 hover:underline text-black dark:text-white bg-white/60 dark:bg-black/80 dark:border-2 dark:border-white rounded-lg shadow p-2 block text-center will-change-auto"
             href='https://codemates123.github.io/homepage/'>CODE MATESとは</a>
           <a className="mx-10 hover:underline text-black dark:text-white bg-white/60 dark:bg-black/80 dark:border-2 dark:border-white rounded-lg shadow p-2 block text-center will-change-auto"
