@@ -112,7 +112,13 @@ function findNextBuses({
           nextBuses.push(bus)
         }
       }
-      if (nextBuses.length >= Math.abs(length)) { return nextBuses } // 2本のバスを見つけたら返す
+      if (nextBuses.length >= Math.abs(length)) {
+        if (length >= 0) {
+          return nextBuses
+        } else {
+          return nextBuses.reverse()
+        }
+      } // 2本のバスを見つけたら返す
     }
     if (length >= 1) {
       dayToCheck = getNextDay({
