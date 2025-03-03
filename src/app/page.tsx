@@ -201,7 +201,7 @@ export default function Home() {
     if (!state.isComingToHosei) {
       [departure, destination] = [destination, departure]
     }
-    if (state.isComingToHosei) {
+    if (state.isComingToHosei && nextBus) {
       overlay.economics = minutesToTime(nextBus.arriveHour * 60 + nextBus.arriveMinute + buildings.economics)
       overlay.health = minutesToTime(nextBus.arriveHour * 60 + nextBus.arriveMinute + buildings.health)
       overlay.sport = minutesToTime(nextBus.arriveHour * 60 + nextBus.arriveMinute + buildings.sport)
