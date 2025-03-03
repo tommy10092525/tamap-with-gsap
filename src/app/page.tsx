@@ -3,9 +3,8 @@ import Image from "next/image";
 import map from "../../public/Map.png"
 import logo from "../../public/tamap_logo.png"
 import arrow from "../../public/arrow.png"
-import { stationNames } from "./utils/constants";
 import { HolidayData, State, Timetable } from "./utils/types";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
 import { timetableApi, holidayDataAPi } from "./utils/constants";
 import { dayIndices, findNextBuses, minutesToTime } from "./utils/timeHandlers";
@@ -16,8 +15,8 @@ import { ScrollTrigger } from "gsap/all";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
+  // SheetDescription,
+  // SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
@@ -89,7 +88,7 @@ export default function Home() {
       const station = localStorage.getItem("station")
       const isComingToHosei = localStorage.getItem("isComingToHosei") === "true"
       if (station) {
-        setState(prev => {
+        setState(() => {
           return {
             station: station,
             isComingToHosei: isComingToHosei,
@@ -101,7 +100,7 @@ export default function Home() {
       }
     }
     setInterval(() => {
-      setNow(prev => {
+      setNow(() => {
         return new Date()
       })
     }, 1000)
@@ -153,7 +152,7 @@ export default function Home() {
   })
   let departure = "";
   let destination = "";
-  let overlay = {
+  const overlay = {
     economics: "--:--",
     health: "--:--",
     sport: "--:--",
@@ -188,7 +187,7 @@ export default function Home() {
       currentDate: new Date(),
       length: 4
     })
-    let [nextBus] = futureBuses
+    const [nextBus] = futureBuses
     if (state.station == "nishihachioji") {
       departure = "西八王子"
     } else if (state.station == "mejirodai") {

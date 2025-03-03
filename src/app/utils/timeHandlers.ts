@@ -1,4 +1,3 @@
-import { timetableApi } from "./constants"
 import { Timetable, HolidayData } from "./types"
 
 const dayIndices = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -32,7 +31,7 @@ function isWeekday(day: string) {
 
 // 次の曜日を取得する関数（祝日も「日曜日」として扱う）
 function getNextDay({ currentDay, currentDate, holidayData }: { currentDay: string, currentDate: Date, holidayData: HolidayData }) {
-  let nextDate = new Date(currentDate)
+  const nextDate = new Date(currentDate)
   nextDate.setDate(nextDate.getDate() + 1)
   if (isHoliday({
     date: nextDate,
@@ -45,7 +44,7 @@ function getNextDay({ currentDay, currentDate, holidayData }: { currentDay: stri
 }
 
 function getPreviousDay({ currentDay, currentDate, holidayData }: { currentDay: string, currentDate: Date, holidayData: HolidayData }) {
-  let previousDate = new Date(currentDate)
+  const previousDate = new Date(currentDate)
   previousDate.setDate(previousDate.getDate() - 1)
   if (isHoliday({
     date: previousDate,
@@ -66,7 +65,7 @@ function findNextBuses({
     hour: currentHour,
     minutes: currentMinutes
   })
-  let nextBuses = []
+  const nextBuses = []
   // 現在の曜日のバスを取得
   timeTable=timeTable.filter(item=>item.station===station&&item.isComingToHosei===isComingToHosei).sort((a,b)=>{
     if(a.day!==b.day){
@@ -87,13 +86,13 @@ function findNextBuses({
   } else {
     dayToCheck = currentDay
   }
-  let dateToCheck = currentDate
+  const dateToCheck = currentDate
   // バスが見つかるまで次の日に進む
   for (let i = 0; i < 7; i++) {
     const busesForDay = timeTable.filter(bus =>
       bus.day === dayToCheck || (isWeekday(dayToCheck) && bus.day === "weekday")
     )
-    for (let bus of busesForDay) {
+    for (const bus of busesForDay) {
       const busLeaveTime = toMinutes({
         hour: bus.leaveHour,
         minutes: bus.leaveMinute
