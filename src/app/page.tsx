@@ -57,10 +57,19 @@ export default function Home() {
   const timesContainer = useRef(null)
   const directionContainer = useRef(null)
   const overlayContainer = useRef(null)
+  const times={
+    economics: useRef(null),
+    health: useRef(null),
+    gym: useRef(null),
+    sport: useRef(null),
+  }
   const animateText = useGSAP().contextSafe(() => {
     gsap.fromTo(timesContainer.current, { opacity: 0, y: 10 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
-    gsap.fromTo(gsap.utils.selector(directionContainer)("p"), { opacity: 0, y: -10 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
-    gsap.fromTo(gsap.utils.selector(overlayContainer)("span"), { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
+    gsap.fromTo(directionContainer.current, { opacity: 0, y: -10 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
+    gsap.fromTo(times.economics.current, { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
+    gsap.fromTo(times.health.current, { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
+    gsap.fromTo(times.gym.current, { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
+    gsap.fromTo(times.sport.current, { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
   })
   const stationRefs = {
     nishihachioji: useRef(null),
@@ -290,19 +299,19 @@ export default function Home() {
             <Image src={map} alt="地図のイラスト" className="h-72 w-auto mx-auto" />
             <div className="top-4 left-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-[2px] rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               経済
-              <span className="block">{overlay.economics}</span>
+              <span className="block" ref={times.economics}>{overlay.economics}</span>
             </div>
             <div className="top-4 right-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-[2px] rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               社・現福
-              <span className="block">{overlay.health}</span>
+              <span className="block" ref={times.health}>{overlay.health}</span>
             </div>
             <div className="bottom-4 left-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-[2px] rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               体育館
-              <span className="block">{overlay.gym}</span>
+              <span className="block" ref={times.gym}>{overlay.gym}</span>
             </div>
             <div className="bottom-4 right-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-[2px] rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               スポ健康
-              <span className="block">{overlay.sport}</span>
+              <span className="block" ref={times.sport}>{overlay.sport}</span>
             </div>
           </div>
 
