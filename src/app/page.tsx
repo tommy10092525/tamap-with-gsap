@@ -23,8 +23,7 @@ import {
 
 gsap.registerPlugin(useGSAP)
 gsap.registerPlugin(ScrollTrigger)
-gsap.ticker.fps(144)
-gsap.ticker.lagSmoothing(1000,16)
+gsap.ticker.fps(60)
 
 
 export default function Home() {
