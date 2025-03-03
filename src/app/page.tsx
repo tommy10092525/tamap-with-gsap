@@ -24,14 +24,21 @@ import {
 gsap.registerPlugin(useGSAP)
 gsap.registerPlugin(ScrollTrigger)
 
-const initUserInput = () => {
-  localStorage.clear()
-  localStorage.setItem("firstAccessed", "false")
-}
 
 export default function Home() {
   const [state, setState] = useState<State>({ station: "", isComingToHosei: true, menuOpened: false })
   const [now, setNow] = useState(new Date())
+  const initUserInput = () => {
+    localStorage.clear()
+    localStorage.setItem("firstAccessed", "false")
+    setState(() => {
+      return {
+        station: "nishihachioji",
+        isComingToHosei: true,
+        menuOpened: false,
+      }
+    })
+  }
   const arrowsRef = useRef(null)
   const arrowsContainer = useRef(null)
   const animateArrows = useGSAP().contextSafe(() => {
@@ -66,21 +73,6 @@ export default function Home() {
   useGSAP(() => {
     gsap.to(waribikiRef.current, { scale: 1.05, duration: 1, yoyo: true, repeat: -1 })
   })
-  // const menuButtonRef=useRef(null)
-  // const menuContainer=useRef(null)
-  // const menuBackground=useRef(null)
-  // useGSAP(()=>
-  //   gsap.set(menuBackground.current,{autoAlpha:0})
-  // )
-  // const moveMenu=useGSAP().contextSafe(()=>{
-  //   if(state.menuOpened){
-  //     gsap.to(menuBackground.current,{autoAlpha:0.5,duration:0.3,ease:"back"})
-  //     gsap.to(menuContainer.current,{x:0,duration:0.3,ease:"back"})
-  //   }else{
-  //     gsap.to(menuBackground.current,{autoAlpha:0,duration:0.3,ease:"back"})
-  //     gsap.to(menuContainer.current,{x:288,duration:0.3,ease:"back"})
-  //   }
-  // })
   useEffect(() => {
     if (localStorage.getItem("firstAccessed") !== "false") {
       initUserInput()
