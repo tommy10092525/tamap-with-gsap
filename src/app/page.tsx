@@ -253,14 +253,14 @@ export default function Home() {
             <div className="h-40 overflow-y-scroll will-change-scroll" ref={timesContainer}>
               {previousBuses.map((item, i) => {
                 return <div className="md:text-2xl text-lg opacity-50 font-sans my-4 flex text-center md:font-bold font-semibold" key={i}>
-                  <p className="w-1/2 mx-auto my-0">{minutesToTime(item.leaveHour * 60 + item.leaveMinute)}</p>
-                  <p className="w-1/2 mx-auto my-0">{minutesToTime(item.arriveHour * 60 + item.arriveMinute)}</p>
+                  <p className="w-1/2 mx-auto my-0">{item ? minutesToTime(item.leaveHour * 60 + item.leaveMinute) : "--:--"}</p>
+                  <p className="w-1/2 mx-auto my-0">{item ? minutesToTime(item.arriveHour * 60 + item.arriveMinute) : "--:--"}</p>
                 </div>
               })}
               {futureBuses.map((item, i) => {
                 return <div className="md:text-4xl text-3xl font-sans my-4 flex text-center md:font-bold font-semibold" key={i}>
-                  <p className="w-1/2 mx-auto my-0">{minutesToTime(item.leaveHour * 60 + item.leaveMinute)}</p>
-                  <p className="w-1/2 mx-auto my-0">{minutesToTime(item.arriveHour * 60 + item.arriveMinute)}</p>
+                  <p className="w-1/2 mx-auto my-0">{item ? minutesToTime(item.leaveHour * 60 + item.leaveMinute) : "--:--"}</p>
+                  <p className="w-1/2 mx-auto my-0">{item ? minutesToTime(item.arriveHour * 60 + item.arriveMinute) : "--:--"}</p>
                 </div>
               })}
             </div>
