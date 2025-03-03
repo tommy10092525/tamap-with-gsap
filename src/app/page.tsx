@@ -23,6 +23,8 @@ import {
 
 gsap.registerPlugin(useGSAP)
 gsap.registerPlugin(ScrollTrigger)
+gsap.ticker.fps(144)
+gsap.ticker.lagSmoothing(1000,16)
 
 
 export default function Home() {
@@ -56,9 +58,9 @@ export default function Home() {
   const directionContainer = useRef(null)
   const overlayContainer = useRef(null)
   const animateText = useGSAP().contextSafe(() => {
-    gsap.fromTo(gsap.utils.selector(timesContainer)("p"), { opacity: 0, y: 10 }, { y: 0, duration: 0.3, opacity: 1 })
-    gsap.fromTo(gsap.utils.selector(directionContainer)("p"), { opacity: 0, y: -10 }, { y: 0, duration: 0.3, opacity: 1 })
-    gsap.fromTo(gsap.utils.selector(overlayContainer)("span"), { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1 })
+    gsap.fromTo(gsap.utils.selector(timesContainer)("p"), { opacity: 0, y: 10 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
+    gsap.fromTo(gsap.utils.selector(directionContainer)("p"), { opacity: 0, y: -10 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
+    gsap.fromTo(gsap.utils.selector(overlayContainer)("span"), { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
   })
   const stationRefs = {
     nishihachioji: useRef(null),
