@@ -39,6 +39,11 @@ export default function Home() {
       }
     })
   }
+  const mainContainer = useRef(null)
+  useGSAP(() => {
+    gsap.fromTo(gsap.utils.selector(mainContainer)("div,a"), { autoAlpha: 0}, { autoAlpha: 1, duration: 0.3 ,stagger: 0.1,ease:"none"})
+    gsap.fromTo(timesContainer.current,{height:320},{delay:1,height:160,duration:0.5,ease:"power1.inOut"})
+  })
   const arrowsRef = useRef(null)
   const arrowsContainer = useRef(null)
   const animateArrows = useGSAP().contextSafe(() => {
@@ -122,7 +127,6 @@ export default function Home() {
         menuOpened: !prev.menuOpened
       }
     })
-    // moveMenu()
   }
 
   const handleStationButtonClicked = (station: string) => {
@@ -241,11 +245,11 @@ export default function Home() {
 
 
       <div className="p-3 bg-gradient-to-bl from-sky-400 to-orange-400 dark:from-blue-500 dark:to-orange-400 w-full h-full text-black dark:text-white">
-        <div className="max-w-screen-md mx-auto touch-manipulation p-3">
+        <div className="max-w-screen-md mx-auto touch-manipulation p-3" ref={mainContainer}>
           <Image alt="たまっぷのロゴ" src={logo} className="w-60 h-60 mx-auto -my-8" />
 
           {/* 一つ目のカード */}
-          <div className="-full bg-white/30 dark:bg-black/30 dark:bg-opacity-30 rounded-2xl shadow-lg p-2 mt-4">
+          <div className="-full bg-white/30 dark:bg-black/30 dark:bg-opacity-30 rounded-2xl shadow-lg p-2 mt-4 opacity-0">
 
             {/* 行先表示 */}
             <div className="text-xl mt-5 font-semibold text-center flex mx-auto" ref={directionContainer}>
@@ -254,7 +258,7 @@ export default function Home() {
               <p className="js-arrival text-center inline-block w-1/2 h-8">{destination}</p>
             </div>
             {/* 時刻一覧 */}
-            <div className="h-40 overflow-y-scroll will-change-scroll" ref={timesContainer}>
+            <div className="h-40 overflow-y-scroll text-overflow-ellipsis" ref={timesContainer}>
               {previousBuses.map((item, i) => {
                 return <div className="md:text-2xl text-lg opacity-50 font-sans my-4 flex text-center md:font-bold font-semibold" key={i}>
                   <p className="w-1/2 mx-auto my-0">{item ? minutesToTime(item.leaveHour * 60 + item.leaveMinute) : "--:--"}</p>
@@ -280,28 +284,28 @@ export default function Home() {
           </div>
 
           {/* 二つ目のカード */}
-          <div className="w-full bg-white/20 dark:bg-black/30 rounded-2xl shadow-lg relative font-semibold text-lg mt-4 hoverable:hover:scale-110  js-map-container h-auto overflow-x-hidden" ref={overlayContainer}>
+          <div className="w-full bg-white/20 dark:bg-black/30 rounded-2xl shadow-lg relative font-semibold text-lg mt-4 hoverable:hover:scale-110  js-map-container h-auto opacity-0" ref={overlayContainer}>
             <Image src={map} alt="地図のイラスト" className="h-72 w-auto mx-auto" />
-            <div className="top-4 left-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
+            <div className="top-4 left-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-[2px] rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               経済
               <span className="block">{overlay.economics}</span>
             </div>
-            <div className="top-4 right-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
+            <div className="top-4 right-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-[2px] rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               社・現福
               <span className="block">{overlay.health}</span>
             </div>
-            <div className="bottom-4 left-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
+            <div className="bottom-4 left-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-[2px] rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               体育館
               <span className="block">{overlay.gym}</span>
             </div>
-            <div className="bottom-4 right-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
+            <div className="bottom-4 right-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-[2px] rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               スポ健康
               <span className="block">{overlay.sport}</span>
             </div>
           </div>
 
           {/* 三つ目のカード */}
-          <div className="font-semibold text-lg flex mt-2 justify-center w-full bg-white/20 dark:bg-black/30 rounded-2xl shadow-lg p-2 text-center hoverable:hover:scale-110">
+          <div className="font-semibold text-lg flex mt-2 justify-center w-full bg-white/20 dark:bg-black/30 rounded-2xl shadow-lg p-2 text-center hoverable:hover:scale-110 opacity-0">
             <button className="bg-black/50 dark:bg-white/50 rounded-xl px-1 py-3 w-1/3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
               handleStationButtonClicked("nishihachioji")
             }} ref={stationRefs.nishihachioji}>西八王子</button>
@@ -312,8 +316,12 @@ export default function Home() {
               handleStationButtonClicked("aihara")
             }} ref={stationRefs.aihara}>相原</button>
           </div>
-
-          <a href="https://codemates.lolitapunk.jp/tamap/templates/tamap_discount" className="my-4 rounded-full bg-gradient-to-r from-pink-400 to-sky-300 font-bold text-3xl text-center p-5 w-full block border-gray-800 shadow-lg text-black border-2" ref={waribikiRef}>
+          
+          {/* 割引ボタン */}
+          <a
+            href="https://codemates.lolitapunk.jp/tamap/templates/tamap_discount"
+            className="my-4 rounded-full bg-gradient-to-r from-pink-400 to-sky-300 font-bold text-3xl text-center p-5 w-full block border-gray-800 shadow-lg text-black border-2 opacity-0"
+            ref={waribikiRef}>
             飲食店割引はこちら
           </a>
           <p className="text-black text-center font-medium mt-2 mx-auto">時刻は目安であり、交通状況等による変わる可能性があります。<br />また臨時便等には対応しておりません。</p>
