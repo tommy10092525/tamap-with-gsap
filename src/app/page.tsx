@@ -23,8 +23,8 @@ import {
 
 gsap.registerPlugin(useGSAP)
 gsap.registerPlugin(ScrollTrigger)
-gsap.ticker.fps(60)
-
+gsap.ticker.fps(120)
+gsap.ticker.lagSmoothing(1000,16)
 
 export default function Home() {
   const [state, setState] = useState<State>({ station: "", isComingToHosei: true, menuOpened: false })
@@ -65,10 +65,7 @@ export default function Home() {
   const animateText = useGSAP().contextSafe(() => {
     gsap.fromTo(timesContainer.current, { opacity: 0, y: 10 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
     gsap.fromTo(directionContainer.current, { opacity: 0, y: -10 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
-    gsap.fromTo(times.economics.current, { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
-    gsap.fromTo(times.health.current, { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
-    gsap.fromTo(times.gym.current, { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
-    gsap.fromTo(times.sport.current, { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
+    gsap.fromTo(Object.values(times).map(ref => ref.current), { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
   })
   const stationRefs = {
     nishihachioji: useRef(null),
