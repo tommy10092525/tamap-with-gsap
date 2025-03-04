@@ -148,10 +148,14 @@ export default function Home() {
   }
 
   const { data: timetable, isLoading: isTimetableLoading } = useSWR(timetableApi, (key: string) => {
-    return fetch(key).then((res) => res.json() as Promise<Timetable | null>)
+    return fetch(key).then((res): Promise<Timetable | null> => {
+      return res.json()
+    })
   })
   const { data: holidayData, isLoading: isHolidayDataLoading } = useSWR(holidayDataAPi, (key: string) => {
-    return fetch(key).then(res => res.json() as Promise<HolidayData | null>)
+    return fetch(key).then((res): Promise<HolidayData | null> => {
+      return res.json()
+    })
   })
   let departure = "";
   let destination = "";
@@ -293,19 +297,19 @@ export default function Home() {
           {/* 二つ目のカード */}
           <div className="w-full bg-white/20 dark:bg-black/30 rounded-2xl shadow-lg relative font-semibold text-lg mt-4 hoverable:hover:scale-110  js-map-container h-auto opacity-0" ref={overlayContainer}>
             <Image src={map} alt="地図のイラスト" className="h-72 w-auto mx-auto" />
-            <div className="top-4 left-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-[2px] rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
+            <div className="top-4 left-4 absolute bg-white/70 dark:bg-black/50 rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               経済
               <span className="block" ref={times.economics}>{overlay.economics}</span>
             </div>
-            <div className="top-4 right-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-[2px] rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
+            <div className="top-4 right-4 absolute bg-white/70 dark:bg-black/50 rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               社・現福
               <span className="block" ref={times.health}>{overlay.health}</span>
             </div>
-            <div className="bottom-4 left-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-[2px] rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
+            <div className="bottom-4 left-4 absolute bg-white/70 dark:bg-black/50 rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               体育館
               <span className="block" ref={times.gym}>{overlay.gym}</span>
             </div>
-            <div className="bottom-4 right-4 absolute bg-white/20 dark:bg-black/20 backdrop-blur-[2px] rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
+            <div className="bottom-4 right-4 absolute bg-white/70 dark:bg-black/50 rounded-lg shadow-lg p-2 text-center w-1/4 md:w-1/6 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               スポ健康
               <span className="block" ref={times.sport}>{overlay.sport}</span>
             </div>
