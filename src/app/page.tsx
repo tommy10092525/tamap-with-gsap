@@ -148,14 +148,10 @@ export default function Home() {
   }
 
   const { data: timetable, isLoading: isTimetableLoading } = useSWR(timetableApi, (key: string) => {
-    return fetch(key).then((res): Promise<Timetable | null> => {
-      return res.json()
-    })
+    return fetch(key).then((res) => res.json() as Promise<Timetable | null>)
   })
   const { data: holidayData, isLoading: isHolidayDataLoading } = useSWR(holidayDataAPi, (key: string) => {
-    return fetch(key).then((res): Promise<HolidayData | null> => {
-      return res.json()
-    })
+    return fetch(key).then(res => res.json() as Promise<HolidayData | null>)
   })
   let departure = "";
   let destination = "";
