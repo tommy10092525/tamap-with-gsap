@@ -215,7 +215,7 @@ export default function Home() {
   return (
     <>
       {/* 時計 */}
-      <div className="bg-white/30 dark:bg-black/30 rounded-3xl shadow fixed p-5 backdrop-blur-sm z-10 top-3 left-3 text-black dark:text-white w-1/3">
+      <div className="bg-white/70 dark:bg-black/60 rounded-xl shadow fixed p-5 z-10 top-3 left-3 text-black dark:text-white w-1/3">
         <p suppressHydrationWarning={true} className="text-lg font-medium text-center w-auto h-7">{`${new Date().getFullYear()}/${new Date().getMonth()}/${new Date().getDate()}`}</p>
         <p suppressHydrationWarning={true} className="text-2xl font-medium text-center w-auto h-7">{new Date().toLocaleTimeString()}</p>
       </div>
