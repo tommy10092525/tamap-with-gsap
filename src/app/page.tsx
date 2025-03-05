@@ -46,12 +46,14 @@ export default function Home() {
     gsap.fromTo(timesContainer.current,{height:320},{delay:1,height:160,duration:0.5,ease:"power1.inOut"})
   })
   const arrowsRef = useRef(null)
+  const departureRef = useRef(null)
+  const destinationRef = useRef(null)
   const arrowsContainer = useRef(null)
   const animateArrows = useGSAP().contextSafe(() => {
     gsap.fromTo(arrowsRef.current, { rotate: 0 }, { rotate: 180, duration: 0.3 })
   })
   const animateDirectionButton = useGSAP().contextSafe(() => {
-    gsap.fromTo(arrowsContainer.current, { scaleX: 1.05 }, { scaleX: 1.0, duration: 0.3 })
+    gsap.fromTo(arrowsContainer.current, {scale:1.05}, { scale:1, duration: 0.3 })
   })
   const timesContainer = useRef(null)
   const directionContainer = useRef(null)
@@ -64,8 +66,8 @@ export default function Home() {
   }
   const animateText = useGSAP().contextSafe(() => {
     gsap.fromTo(timesContainer.current, { opacity: 0, y: 10 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
-    gsap.fromTo(directionContainer.current, { opacity: 0, y: -10 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
     gsap.fromTo(Object.values(times).map(ref => ref.current), { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1 ,stagger:0.01})
+
   })
   const stationRefs = {
     nishihachioji: useRef(null),
@@ -74,11 +76,17 @@ export default function Home() {
   }
   const animateStationButton = useGSAP().contextSafe((station: string) => {
     if (station === "nishihachioji") {
-      gsap.fromTo(stationRefs.nishihachioji.current, { scale: 1 }, { scale: 0.9, duration: 0.3 })
+      gsap.fromTo(stationRefs.nishihachioji.current, { scale: 1.05 }, { scale: 1, duration: 0.3 })
+      gsap.to(stationRefs.mejirodai.current, { scale: 0.9 ,duration:0.3})
+      gsap.to(stationRefs.aihara.current, { scale: 0.9 ,duration:0.3})
     } else if (station == "mejirodai") {
-      gsap.fromTo(stationRefs.mejirodai.current, { scale: 1 }, { scale: 0.9, duration: 0.3 })
+      gsap.to(stationRefs.nishihachioji.current, { scale: 0.9 ,duration:0.3})
+      gsap.fromTo(stationRefs.mejirodai.current, { scale: 1.05 }, { scale: 1, duration: 0.3 })
+      gsap.to(stationRefs.aihara.current, { scale: 0.9 ,duration:0.3})
     } else {
-      gsap.fromTo(stationRefs.aihara.current, { scale: 1 }, { scale: 0.9, duration: 0.3 })
+      gsap.to(stationRefs.nishihachioji.current, { scale: 0.9 ,duration:0.3})
+      gsap.to(stationRefs.mejirodai.current, { scale: 0.9 ,duration:0.3})
+      gsap.fromTo(stationRefs.aihara.current, { scale: 1.05 }, { scale: 1, duration: 0.3 })
     }
   })
   const waribikiRef = useRef(null)
@@ -125,6 +133,7 @@ export default function Home() {
     animateDirectionButton()
     animateArrows()
     animateText()
+    gsap.fromTo(directionContainer.current, { rotateY: 180,autoAlpha:0 }, { rotateY: 0, duration: 0.3, autoAlpha:1 })
   }
 
   const handleMenuButtonClicked = () => {
@@ -134,6 +143,7 @@ export default function Home() {
         menuOpened: !prev.menuOpened
       }
     })
+
   }
 
   const handleStationButtonClicked = (station: string) => {
@@ -145,6 +155,11 @@ export default function Home() {
       }
     })
     animateText()
+    if(state.isComingToHosei){
+      gsap.fromTo(departureRef.current, { y: -20 ,autoAlpha:0}, { y: 0, duration: 0.3, autoAlpha:1 })
+    }else{
+      gsap.fromTo(destinationRef.current, { y: -20 ,autoAlpha:0}, { y: 0, duration: 0.3, autoAlpha:1 })
+    }
   }
 
   const { data: timetable, isLoading: isTimetableLoading } = useSWR(timetableApi, (key: string) => {
@@ -260,9 +275,9 @@ export default function Home() {
 
             {/* 行先表示 */}
             <div className="text-xl mt-5 font-semibold text-center flex mx-auto" ref={directionContainer}>
-              <p className="js-departure text-center inline-block w-1/2 h-8">{departure}</p>
+              <p className="js-departure text-center inline-block w-1/2 h-8" ref={departureRef}>{departure}</p>
               <span className="w-4 h-4">⇒</span>
-              <p className="js-arrival text-center inline-block w-1/2 h-8">{destination}</p>
+              <p className="js-arrival text-center inline-block w-1/2 h-8" ref={destinationRef}>{destination}</p>
             </div>
             {/* 時刻一覧 */}
             <div className="h-40 overflow-y-scroll text-overflow-ellipsis" ref={timesContainer}>
