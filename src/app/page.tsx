@@ -216,8 +216,8 @@ export default function Home() {
     <>
       {/* 時計 */}
       <div className="bg-white/70 dark:bg-black/60 rounded-xl shadow fixed p-5 z-10 top-3 left-3 text-black dark:text-white w-1/3">
-        <p suppressHydrationWarning={true} className="text-lg font-medium text-center w-auto h-7">{`${new Date().getUTCDate()}`}</p>
-        <p suppressHydrationWarning={true} className="text-2xl font-medium text-center w-auto h-7">{new Date().toLocaleTimeString()}</p>
+        <p suppressHydrationWarning={false} className="text-lg font-medium text-center w-auto h-7">{`${typeof window !== "undefined" ? `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}` : "----/--/--"}`}</p>
+        <p suppressHydrationWarning={false} className="text-2xl font-medium text-center w-auto h-7">{`${typeof window !== "undefined" ? `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}` : "--:--:--"}`}</p>
       </div>
 
       {/* メニューを開くボタン */}
