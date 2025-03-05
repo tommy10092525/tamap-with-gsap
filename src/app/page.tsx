@@ -83,7 +83,7 @@ export default function Home() {
   })
   const waribikiRef = useRef(null)
   useGSAP(() => {
-    gsap.to(waribikiRef.current, { scale: 1.05, duration: 1, yoyo: true, repeat: -1 })
+      gsap.fromTo(waribikiRef.current, { scale: 0.95, duration: 1}, { scale: 1.05, duration: 1, yoyo: true, repeat: -1,ease:"power1.out" })
   })
   useEffect(() => {
     if (localStorage.getItem("firstAccessed") !== "false") {
