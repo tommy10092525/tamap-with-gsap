@@ -348,7 +348,7 @@ export default function Home() {
           
           {/* 割引ボタン */}
           <Link
-            href="https://codemates.lolitapunk.jp/tamap/templates/tamap_discount"
+            href="/discount"
             className="my-4 rounded-full bg-gradient-to-r from-pink-400 to-sky-300 font-bold text-3xl text-center p-5 w-full block border-gray-800 shadow-lg text-black border-2 opacity-0"
             ref={waribikiRef}>
             飲食店割引はこちら
