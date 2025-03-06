@@ -40,7 +40,7 @@ const page = () => {
             <p className='text-rose-500'>大盛無料</p>
           </div>
         </Link>
-        <Link href="#" className='bg-gray-100 dark:bg-zinc-900 border-2 rounded-lg border-rose-500 shadow-lg hover:scale-105 transition-all duration-300'>
+        <Link href="/discount/kokuterudou" className='bg-gray-100 dark:bg-zinc-900 border-2 rounded-lg border-rose-500 shadow-lg hover:scale-105 transition-all duration-300'>
             <Image src={kokuterudoImage} alt="コクテル堂の画像" width={500} height={500} className='w-3xl h-56 mx-auto'/>
           <div className='text-center'>
             <p className='text-md'>橋本　カフェ</p>
