@@ -328,15 +328,21 @@ export default function Home() {
 
           {/* 三つ目のカード */}
           <div className="font-semibold text-lg flex mt-2 justify-center w-full bg-white/20 dark:bg-black/30 rounded-2xl shadow-lg p-2 text-center hoverable:hover:scale-110 opacity-0">
-            <button className="bg-black/50 dark:bg-white/50 rounded-xl px-1 py-3 w-1/3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
+          {state.station==="nishihachioji" ? <button className="bg-black/80 dark:bg-white/80 rounded-xl px-1 py-3 w-1/3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
               handleStationButtonClicked("nishihachioji")
-            }} ref={stationRefs.nishihachioji}>西八王子</button>
-            <button className="bg-black/50 dark:bg-white/50 rounded-xl px-1 py-3 w-1/3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
+            }} ref={stationRefs.nishihachioji}>西八王子</button> : <button className="bg-black/50 dark:bg-white/50 rounded-xl px-1 py-3 w-1/3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
+              handleStationButtonClicked("nishihachioji")
+            }} ref={stationRefs.nishihachioji}>西八王子</button>}
+            {state.station==="mejirodai" ? <button className="bg-black/80 dark:bg-white/80 rounded-xl px-1 py-3 w-1/3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
               handleStationButtonClicked("mejirodai")
-            }} ref={stationRefs.mejirodai}>めじろ台</button>
-            <button className="bg-black/50 dark:bg-white/50 rounded-xl px-1 py-3 w-1/3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
+            }} ref={stationRefs.mejirodai}>めじろ台</button> : <button className="bg-black/50 dark:bg-white/50 rounded-xl px-1 py-3 w-1/3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
+              handleStationButtonClicked("mejirodai")
+            }} ref={stationRefs.mejirodai}>めじろ台</button>}
+            {state.station==="aihara" ? <button className="bg-black/80 dark:bg-white/80 rounded-xl px-1 py-3 w-1/3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
               handleStationButtonClicked("aihara")
-            }} ref={stationRefs.aihara}>相原</button>
+            }} ref={stationRefs.aihara}>相原</button> : <button className="bg-black/50 dark:bg-white/50 rounded-xl px-1 py-3 w-1/3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
+              handleStationButtonClicked("aihara")
+            }} ref={stationRefs.aihara}>相原</button>}
           </div>
           
           {/* 割引ボタン */}
