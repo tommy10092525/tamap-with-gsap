@@ -24,7 +24,7 @@ const page = () => {
             <p className='text-rose-500'>普通盛り50円引き<br />大盛無料</p>
           </div>
         </Link>
-        <Link href="#" className='bg-gray-100 dark:bg-zinc-900 border-2 rounded-lg border-rose-500 shadow-lg hover:scale-105 transition-all duration-300'>
+        <Link href="/discount/hicheese" className='bg-gray-100 dark:bg-zinc-900 border-2 rounded-lg border-rose-500 shadow-lg hover:scale-105 transition-all duration-300'>
           <Image src={hicheeseImage} alt="ハイチーズの画像" width={500} height={500} className='w-3xl h-56 mx-auto' />
           <div className='text-center'>
             <p className='text-md'>八王子　チーズ料理</p>
