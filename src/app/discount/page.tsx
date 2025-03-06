@@ -32,7 +32,7 @@ const page = () => {
             <p className='text-rose-500'>ランチソフトドリンク無料<br />コースディナー500円引き<br />飲み放題30分延長</p>
           </div>
         </Link>
-        <Link href="#" className='bg-gray-100 dark:bg-zinc-900 border-2 rounded-lg border-rose-500 shadow-lg hover:scale-105 transition-all duration-300'>
+        <Link href="/discount/goemon" className='bg-gray-100 dark:bg-zinc-900 border-2 rounded-lg border-rose-500 shadow-lg hover:scale-105 transition-all duration-300'>
           <Image src={goemonImage} alt="吾衛門の画像" width={500} height={500} className='w-3xl h-56 mx-auto' />
           <div className='text-center'>
             <p className='text-md'>西八王子　ラーメン店</p>
