@@ -12,6 +12,7 @@ import { buildings } from "./utils/constants";
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
+import Link from "next/link";
 import {
   Sheet,
   SheetContent,
@@ -242,8 +243,8 @@ export default function Home() {
         </SheetTrigger>
         <SheetContent className="bg-white/70 dark:bg-black/30">
           <SheetTitle className="text-center mt-3 text-xl">Menu</SheetTitle>
-          <a className="mx-10 hover:underline text-black dark:text-white bg-white/60 dark:bg-black/80 dark:border-2 dark:border-white rounded-lg shadow p-2 block text-center will-change-auto"
-            href='https://docs.google.com/forms/d/e/1FAIpQLScPysPRj60-S2v_zmFjrQF6YKlS0Qe200GSO4LnEMsiVbXxYg/viewform?usp=sf_link'>アプリご意見</a>
+          <Link className="mx-10 hover:underline text-black dark:text-white bg-white/60 dark:bg-black/80 dark:border-2 dark:border-white rounded-lg shadow p-2 block text-center will-change-auto"
+            href='https://docs.google.com/forms/d/e/1FAIpQLScPysPRj60-S2v_zmFjrQF6YKlS0Qe200GSO4LnEMsiVbXxYg/viewform?usp=sf_link'>アプリご意見</Link>
           <p className="mx-10 share-btn hover:underline text-black dark:text-white bg-white/60 dark:bg-black/80 dark:border-2 dark:border-white rounded-lg shadow p-2 block text-center will-change-auto" onClick={async ()=>{
             if (navigator.share) {
               try {
@@ -257,8 +258,8 @@ export default function Home() {
               }
             }
           }}>アプリを共有</p>
-          <a className="mx-10 hover:underline text-black dark:text-white bg-white/60 dark:bg-black/80 dark:border-2 dark:border-white rounded-lg shadow p-2 block text-center will-change-auto"
-            href='https://codemates123.github.io/homepage/'>CODE MATESとは</a>
+          <Link className="mx-10 hover:underline text-black dark:text-white bg-white/60 dark:bg-black/80 dark:border-2 dark:border-white rounded-lg shadow p-2 block text-center will-change-auto"
+            href='https://codemates123.github.io/homepage/'>CODE MATESとは</Link>
           <a className="mx-10 hover:underline text-black dark:text-white bg-white/60 dark:bg-black/80 dark:border-2 dark:border-white rounded-lg shadow p-2 block text-center will-change-auto"
             href='https://www.instagram.com/codemates_hosei?igsh=MTJvcmthMzUwOW90cg=='>Instagram</a>
         </SheetContent>
@@ -346,12 +347,12 @@ export default function Home() {
           </div>
           
           {/* 割引ボタン */}
-          <a
+          <Link
             href="https://codemates.lolitapunk.jp/tamap/templates/tamap_discount"
             className="my-4 rounded-full bg-gradient-to-r from-pink-400 to-sky-300 font-bold text-3xl text-center p-5 w-full block border-gray-800 shadow-lg text-black border-2 opacity-0"
             ref={waribikiRef}>
             飲食店割引はこちら
-          </a>
+          </Link>
           <p className="text-black text-center font-medium mt-2 mx-auto">時刻は目安であり、交通状況等による変わる可能性があります。<br />また臨時便等には対応しておりません。</p>
           <p className="text-center text-black">©CODE MATES︎</p>
         </div>
