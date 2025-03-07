@@ -9,7 +9,7 @@ import kokuterudoImage from "../../../public/kokuterudou.jpg"
 const page = () => {
   return (
     <div className='bg-zinc-100 dark:bg-zinc-950 text-black dark:text-white min-h-screen'>
-      <header className='bg-rose-500 text-white py-4 fixed top-0 left-0 right-0 z-10 px-4'>
+      <header className='bg-[#ff6347] text-white py-4 fixed top-0 left-0 right-0 z-10 px-4'>
         <Link href="/" className='float-left'>
           <Image src={logo} alt="たまっぷのロゴ" width={400} height={400} className='w-16 h-16 -my-4' />
         </Link>
