@@ -44,7 +44,7 @@ const page = () => {
           <Image src={kokuterudoImage} alt="コクテル堂の画像" width={500} height={500} className='mx-auto rounded-t-lg' />
           <div className='text-center'>
             <p className='text-md'>橋本　カフェ</p>
-            <p className='text-3xl font-bold'>コクテル道</p>
+            <p className='text-3xl font-bold'>コクテル堂</p>
             <p className='text-rose-500'>ケーキ×ドリンクのセット<br />さらに100円引き</p>
           </div>
         </Link>
