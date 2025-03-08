@@ -263,12 +263,12 @@ export default function Home() {
       </Sheet>
       <div className="p-3 md:p-7 bg-gradient-to-bl from-sky-400 to-orange-400 dark:from-blue-500 dark:to-orange-400 w-full h-full text-black dark:text-white min-h-screen">
         <Image alt="たまっぷのロゴ" src={logo} className="w-60 h-60 mx-auto -my-8 md:col-span-1" />
-        <div className="mx-auto touch-manipulation p-3 md:grid md:grid-cols-5 gap-6 max-w-5xl" ref={mainContainer}>
+        <div className="mx-auto touch-manipulation p-3 md:grid md:grid-cols-5 gap-3 max-w-5xl" ref={mainContainer}>
           {/* 一つ目のカード */}
           <div className="-full bg-white/30 dark:bg-black/30 dark:bg-opacity-30 rounded-2xl shadow-lg p-2 mt-4 col-span-2">
 
             {/* 行先表示 */}
-            <div className="text-xl mt-5 font-semibold text-center mx-auto grid grid-cols-5" ref={directionContainer}>
+            <div className="text-xl mt-5 font-semibold text-center mx-auto grid grid-cols-5 px-8" ref={directionContainer}>
               <p className="js-departure text-center inline-block h-8 col-span-2" ref={departureRef}>{departure}</p>
               <p className="h-4 col-span-1">⇒</p>
               <p className="js-arrival text-center inline-block h-8 col-span-2" ref={destinationRef}>{destination}</p>
@@ -276,15 +276,15 @@ export default function Home() {
             {/* 時刻一覧 */}
             <div className="" ref={timesContainer}>
               {previousBuses.map((item, i) => {
-                return <div className="md:text-2xl text-lg opacity-50 font-sans my-4 text-center md:font-bold font-semibold grid grid-cols-2" key={i}>
-                  <p className="w-1/2 mx-auto -my-1">{item ? minutesToTime(item.leaveHour * 60 + item.leaveMinute) : "--:--"}</p>
-                  <p className="w-1/2 mx-auto -my-1">{item ? minutesToTime(item.arriveHour * 60 + item.arriveMinute) : "--:--"}</p>
+                return <div className="md:text-2xl text-lg opacity-50 font-sans my-4 text-center font-semibold grid grid-cols-2" key={i}>
+                  <p className="w-1/2 mx-auto -my-2">{item ? minutesToTime(item.leaveHour * 60 + item.leaveMinute) : "--:--"}</p>
+                  <p className="w-1/2 mx-auto -my-2">{item ? minutesToTime(item.arriveHour * 60 + item.arriveMinute) : "--:--"}</p>
                 </div>
               })}
               {futureBuses.map((item, i) => {
-                return <div className="md:text-4xl text-3xl font-sans my-4 text-center md:font-bold font-semibold grid grid-cols-2" key={i}>
-                  <p className="w-1/2 mx-auto -my-1">{item ? minutesToTime(item.leaveHour * 60 + item.leaveMinute) : "--:--"}</p>
-                  <p className="w-1/2 mx-auto -my-1">{item ? minutesToTime(item.arriveHour * 60 + item.arriveMinute) : "--:--"}</p>
+                return <div className="md:text-4xl text-3xl font-sans my-4 text-center font-semibold grid grid-cols-2" key={i}>
+                  <p className="w-1/2 mx-auto -my-2">{item ? minutesToTime(item.leaveHour * 60 + item.leaveMinute) : "--:--"}</p>
+                  <p className="w-1/2 mx-auto -my-2">{item ? minutesToTime(item.arriveHour * 60 + item.arriveMinute) : "--:--"}</p>
                 </div>
               })}
             </div>
@@ -321,27 +321,27 @@ export default function Home() {
           </div>
 
           {/* 三つ目のカード */}
-          <div className="font-semibold text-lg mt-2 justify-center w-full bg-white/20 dark:bg-black/30 rounded-2xl shadow-lg p-2 text-center hoverable:hover:scale-110 grid grid-cols-3 col-span-3">
-            {state.station === "nishihachioji" ? <button className="bg-black/80 dark:bg-white/80 rounded-xl px-1 py-3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
+          <div className="font-semibold text-lg mt-3 py-auto md:mt-0 justify-center w-full bg-white/20 dark:bg-black/30 rounded-2xl shadow-lg p-2 text-center hoverable:hover:scale-110 grid grid-cols-3 col-span-2">
+            {state.station === "nishihachioji" ? <button className="h-12 bg-black/80 dark:bg-white/80 rounded-xl shadow-lg scale-90 text-white dark:text-black" onClick={() => {
               handleStationButtonClicked("nishihachioji")
-            }} ref={stationRefs.nishihachioji}>西八王子</button> : <button className="bg-black/50 dark:bg-white/50 rounded-xl px-1 py-3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
+            }} ref={stationRefs.nishihachioji}>西八王子</button> : <button className="h-12 bg-black/50 dark:bg-white/50 rounded-xl shadow-lg scale-90 text-white dark:text-black" onClick={() => {
               handleStationButtonClicked("nishihachioji")
             }} ref={stationRefs.nishihachioji}>西八王子</button>}
-            {state.station === "mejirodai" ? <button className="bg-black/80 dark:bg-white/80 rounded-xl px-1 py-3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
+            {state.station === "mejirodai" ? <button className="h-12 bg-black/80 dark:bg-white/80 rounded-xl shadow-lg scale-90 text-white dark:text-black" onClick={() => {
               handleStationButtonClicked("mejirodai")
-            }} ref={stationRefs.mejirodai}>めじろ台</button> : <button className="bg-black/50 dark:bg-white/50 rounded-xl px-1 py-3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
+            }} ref={stationRefs.mejirodai}>めじろ台</button> : <button className="h-12 bg-black/50 dark:bg-white/50 rounded-xl shadow-lg scale-90 text-white dark:text-black" onClick={() => {
               handleStationButtonClicked("mejirodai")
             }} ref={stationRefs.mejirodai}>めじろ台</button>}
-            {state.station === "aihara" ? <button className="bg-black/80 dark:bg-white/80 rounded-xl px-1 py-3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
+            {state.station === "aihara" ? <button className="h-12 bg-black/80 dark:bg-white/80 rounded-xl shadow-lg scale-90 text-white dark:text-black" onClick={() => {
               handleStationButtonClicked("aihara")
-            }} ref={stationRefs.aihara}>相原</button> : <button className="bg-black/50 dark:bg-white/50 rounded-xl px-1 py-3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
+            }} ref={stationRefs.aihara}>相原</button> : <button className="h-12 bg-black/50 dark:bg-white/50 rounded-xl shadow-lg scale-90 text-white dark:text-black" onClick={() => {
               handleStationButtonClicked("aihara")
             }} ref={stationRefs.aihara}>相原</button>}
           </div>
           {/* 割引ボタン */}
           <Link
             href="/discount"
-            className="my-4 rounded-full bg-gradient-to-r from-pink-400 to-sky-300 font-bold text-3xl text-center p-5 w-full block border-gray-800 shadow-lg text-black border-2 col-span-2"
+            className="my-4 md:m-0 rounded-full bg-gradient-to-r from-pink-400 to-sky-300 font-bold text-3xl text-center p-3 w-full block border-gray-800 shadow-lg text-black border-2 col-span-3"
             ref={waribikiRef}>
             飲食店割引はこちら
           </Link>
