@@ -42,10 +42,6 @@ export default function Home() {
     })
   }
   const mainContainer = useRef(null)
-  useGSAP(() => {
-    gsap.fromTo(gsap.utils.selector(mainContainer)("div,a"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3, stagger: 0.1, ease: "none" })
-    // gsap.fromTo(timesContainer.current,{height:320},{delay:1,height:160,duration:0.5,ease:"power1.inOut"})
-  })
   const arrowsRef = useRef(null)
   const departureRef = useRef(null)
   const destinationRef = useRef(null)
