@@ -265,7 +265,7 @@ export default function Home() {
         <Image alt="たまっぷのロゴ" src={logo} className="w-60 h-60 mx-auto -my-8 md:col-span-1" />
         <div className="mx-auto touch-manipulation p-3 md:grid md:grid-cols-5 gap-6 max-w-5xl" ref={mainContainer}>
           {/* 一つ目のカード */}
-          <div className="-full bg-white/30 dark:bg-black/30 dark:bg-opacity-30 rounded-2xl shadow-lg p-2 mt-4 opacity-0 col-span-2">
+          <div className="-full bg-white/30 dark:bg-black/30 dark:bg-opacity-30 rounded-2xl shadow-lg p-2 mt-4 col-span-2">
 
             {/* 行先表示 */}
             <div className="text-xl mt-5 font-semibold text-center mx-auto grid grid-cols-5" ref={directionContainer}>
@@ -300,7 +300,7 @@ export default function Home() {
           </div>
 
           {/* 二つ目のカード */}
-          <div className="w-full bg-white/20 dark:bg-black/30 rounded-2xl shadow-lg relative font-semibold text-lg mt-4 hoverable:hover:scale-110  js-map-container h-auto opacity-0 col-span-3" ref={overlayContainer}>
+          <div className="w-full bg-white/20 dark:bg-black/30 rounded-2xl shadow-lg relative font-semibold text-lg mt-4 hoverable:hover:scale-110  js-map-container h-auto col-span-3" ref={overlayContainer}>
             <Image src={map} alt="地図のイラスト" className="h-72 w-auto mx-auto" />
             <div className="top-4 left-4 absolute bg-white/70 dark:bg-black/50 rounded-lg shadow-lg p-2 text-center w-1/4 overflow-hidden h-16 will-change-auto max-sm:w-1/3">
               経済
@@ -321,7 +321,7 @@ export default function Home() {
           </div>
 
           {/* 三つ目のカード */}
-          <div className="font-semibold text-lg mt-2 justify-center w-full bg-white/20 dark:bg-black/30 rounded-2xl shadow-lg p-2 text-center hoverable:hover:scale-110 opacity-0 grid grid-cols-3 col-span-3">
+          <div className="font-semibold text-lg mt-2 justify-center w-full bg-white/20 dark:bg-black/30 rounded-2xl shadow-lg p-2 text-center hoverable:hover:scale-110 grid grid-cols-3 col-span-3">
             {state.station === "nishihachioji" ? <button className="bg-black/80 dark:bg-white/80 rounded-xl px-1 py-3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
               handleStationButtonClicked("nishihachioji")
             }} ref={stationRefs.nishihachioji}>西八王子</button> : <button className="bg-black/50 dark:bg-white/50 rounded-xl px-1 py-3 shadow-lg scale-90 text-white dark:text-black" onClick={() => {
@@ -341,7 +341,7 @@ export default function Home() {
           {/* 割引ボタン */}
           <Link
             href="/discount"
-            className="my-4 rounded-full bg-gradient-to-r from-pink-400 to-sky-300 font-bold text-3xl text-center p-5 w-full block border-gray-800 shadow-lg text-black border-2 opacity-0 col-span-2"
+            className="my-4 rounded-full bg-gradient-to-r from-pink-400 to-sky-300 font-bold text-3xl text-center p-5 w-full block border-gray-800 shadow-lg text-black border-2 col-span-2"
             ref={waribikiRef}>
             飲食店割引はこちら
           </Link>
