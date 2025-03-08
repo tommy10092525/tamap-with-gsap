@@ -29,6 +29,13 @@ const page = () => {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade">
           </iframe>
+          <p className='font-semibold text-rose-400 text-lg'>問い合わせ先</p>
+          <p>042-663-6861</p>
+          <p>〒193-0835 東京都八王子市千人町3-3-3JR中央線 西八王子駅 北口より徒歩3分</p>
+          <p className='font-semibold text-rose-400 text-lg'>注意事項</p>
+          <p>・2025年3月31日まで有効です。</p>
+          <p>・他飲食サイトの割引との併用はできません。</p>
+          <p>・ご利用には、法政大学の学生証または教職員証のご提示が必要です。</p>
         </div>
       </div>
     </div>

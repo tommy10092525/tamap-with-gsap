@@ -28,6 +28,13 @@ const page = () => {
           <p className='font-semibold text-rose-400 text-lg'>アクセス</p>
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3244.280509464267!2d139.3424809752558!3d35.59614657261483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60191d37d330c62d%3A0x919a4b9f23796e74!2z44Kz44Kv44OG44Or5aCC5qmL5pys5bqX!5e0!3m2!1sja!2sjp!4v1730106307614!5m2!1sja!2sjp" className="w-full h-64 rounded-lg" style={{ border: 0 }} allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade">
           </iframe>
+          <p className='font-semibold text-rose-400 text-lg'>問い合わせ先</p>
+          <p>042-773-0960</p>
+          <p>〒252-0143 神奈川県相模原市緑区橋本6-2-1 イオン橋本店 2F JR橋本駅から徒歩1分</p>
+          <p className='font-semibold text-rose-400 text-lg'>注意事項</p>
+          <p>・2025年3月31日まで有効です。</p>
+          <p>・他飲食サイトの割引との併用はできません。</p>
+          <p>・ご利用には、法政大学の学生証または教職員証のご提示が必要です。</p>
         </div>
       </div>
     </div>
