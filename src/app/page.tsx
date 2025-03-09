@@ -303,19 +303,19 @@ export default function Home() {
           {/* 二つ目のカード */}
           <div className="relative col-span-3 bg-white/20 dark:bg-black/30 shadow-lg mt-4 js-map-container rounded-2xl w-full h-auto font-semibold text-lg hoverable:hover:scale-110" ref={overlayContainer}>
             <Image src={map} alt="地図のイラスト" className="mx-auto w-auto h-72" />
-            <div className="top-4 left-4 absolute bg-white/70 dark:bg-black/50 shadow-lg backdrop-blur-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
+            <div className="top-4 left-4 absolute bg-zinc-300/90 dark:bg-zinc-800/90 shadow-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
               経済
               <span className="block" ref={times.economics}>{overlay.economics}</span>
             </div>
-            <div className="top-4 right-4 absolute bg-white/70 dark:bg-black/50 shadow-lg backdrop-blur-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
+            <div className="top-4 right-4 absolute bg-zinc-300/90 dark:bg-zinc-800/90 shadow-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
               社・現福
               <span className="block" ref={times.health}>{overlay.health}</span>
             </div>
-            <div className="bottom-4 left-4 absolute bg-white/70 dark:bg-black/50 shadow-lg backdrop-blur-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
+            <div className="bottom-4 left-4 absolute bg-zinc-300/90 dark:bg-zinc-800/90 shadow-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
               体育館
               <span className="block" ref={times.gym}>{overlay.gym}</span>
             </div>
-            <div className="right-4 bottom-4 absolute bg-white/70 dark:bg-black/50 shadow-lg backdrop-blur-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
+            <div className="right-4 bottom-4 absolute bg-zinc-300/90 dark:bg-zinc-800/90 shadow-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
               スポ健康
               <span className="block" ref={times.sport}>{overlay.sport}</span>
             </div>
