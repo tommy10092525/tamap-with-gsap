@@ -71,6 +71,7 @@ export default function Home() {
     mejirodai: useRef(null),
     aihara: useRef(null),
   }
+
   const animateStationButton = useGSAP().contextSafe((station: string) => {
     if (station === "nishihachioji") {
       gsap.fromTo(stationRefs.nishihachioji.current, { scale: 1.05 }, { scale: 1, duration: 0.3 })
@@ -227,7 +228,7 @@ export default function Home() {
   return (
     <>
       {/* 時計 */}
-      <div className="top-3 left-3 z-10 fixed bg-white/70 dark:bg-black/60 shadow p-5 rounded-xl w-1/3 text-black dark:text-white">
+      <div className="top-3 left-3 z-10 fixed bg-white/70 dark:bg-black/60 shadow backdrop-blur-lg p-5 rounded-xl w-1/3 text-black dark:text-white">
         <p suppressHydrationWarning={false} className="w-auto h-7 font-medium text-lg text-center">{`${typeof window !== "undefined" ? `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}` : "----/--/--"}`}</p>
         <p suppressHydrationWarning={false} className="w-auto h-7 font-medium text-2xl text-center">{`${typeof window !== "undefined" ? `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}` : "--:--:--"}`}</p>
       </div>
@@ -277,14 +278,14 @@ export default function Home() {
             <div className="" ref={timesContainer}>
               {previousBuses.map((item, i) => {
                 return <div className="grid grid-cols-2 opacity-50 my-4 font-sans font-semibold text-lg md:text-2xl text-center" key={i}>
-                  <p className="mx-auto -my-2 w-1/2">{item ? minutesToTime(item.leaveHour * 60 + item.leaveMinute) : "--:--"}</p>
-                  <p className="mx-auto -my-2 w-1/2">{item ? minutesToTime(item.arriveHour * 60 + item.arriveMinute) : "--:--"}</p>
+                  <p className="mx-auto -my-2">{item ? minutesToTime(item.leaveHour * 60 + item.leaveMinute) : "--:--"}</p>
+                  <p className="mx-auto -my-2">{item ? minutesToTime(item.arriveHour * 60 + item.arriveMinute) : "--:--"}</p>
                 </div>
               })}
               {futureBuses.map((item, i) => {
                 return <div className="grid grid-cols-2 my-4 font-sans font-semibold text-3xl md:text-4xl text-center" key={i}>
-                  <p className="mx-auto -my-2 w-1/2">{item ? minutesToTime(item.leaveHour * 60 + item.leaveMinute) : "--:--"}</p>
-                  <p className="mx-auto -my-2 w-1/2">{item ? minutesToTime(item.arriveHour * 60 + item.arriveMinute) : "--:--"}</p>
+                  <p className="mx-auto -my-2">{item ? minutesToTime(item.leaveHour * 60 + item.leaveMinute) : "--:--"}</p>
+                  <p className="mx-auto -my-2">{item ? minutesToTime(item.arriveHour * 60 + item.arriveMinute) : "--:--"}</p>
                 </div>
               })}
             </div>
@@ -302,19 +303,19 @@ export default function Home() {
           {/* 二つ目のカード */}
           <div className="relative col-span-3 bg-white/20 dark:bg-black/30 shadow-lg mt-4 js-map-container rounded-2xl w-full h-auto font-semibold text-lg hoverable:hover:scale-110" ref={overlayContainer}>
             <Image src={map} alt="地図のイラスト" className="mx-auto w-auto h-72" />
-            <div className="top-4 left-4 absolute bg-white/70 dark:bg-black/50 shadow-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
+            <div className="top-4 left-4 absolute bg-white/70 dark:bg-black/50 shadow-lg backdrop-blur-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
               経済
               <span className="block" ref={times.economics}>{overlay.economics}</span>
             </div>
-            <div className="top-4 right-4 absolute bg-white/70 dark:bg-black/50 shadow-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
+            <div className="top-4 right-4 absolute bg-white/70 dark:bg-black/50 shadow-lg backdrop-blur-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
               社・現福
               <span className="block" ref={times.health}>{overlay.health}</span>
             </div>
-            <div className="bottom-4 left-4 absolute bg-white/70 dark:bg-black/50 shadow-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
+            <div className="bottom-4 left-4 absolute bg-white/70 dark:bg-black/50 shadow-lg backdrop-blur-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
               体育館
               <span className="block" ref={times.gym}>{overlay.gym}</span>
             </div>
-            <div className="right-4 bottom-4 absolute bg-white/70 dark:bg-black/50 shadow-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
+            <div className="right-4 bottom-4 absolute bg-white/70 dark:bg-black/50 shadow-lg backdrop-blur-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
               スポ健康
               <span className="block" ref={times.sport}>{overlay.sport}</span>
             </div>
