@@ -6,7 +6,7 @@ import arrow from "../../public/arrow.png"
 import { HolidayData, State, Timetable } from "./utils/types";
 import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
-import { timetableApi, holidayDataAPi } from "./utils/constants";
+import { timetableApi, holidayDataAPi, } from "./utils/constants";
 import { dayIndices, findNextBuses, minutesToTime } from "./utils/timeHandlers";
 import { buildings } from "./utils/constants";
 import gsap from "gsap"
@@ -20,76 +20,76 @@ import {
   // SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
+import StationButton from "@/components/ui/station-button";
 
-gsap.registerPlugin(useGSAP)
-gsap.registerPlugin(ScrollTrigger)
-gsap.ticker.fps(120)
-gsap.ticker.lagSmoothing(1000, 16)
+gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger);
+gsap.ticker.fps(120);
+gsap.ticker.lagSmoothing(1000, 16);
 
 export default function Home() {
-  const [state, setState] = useState<State>({ station: "", isComingToHosei: true, menuOpened: false })
-  const [now, setNow] = useState(new Date())
+  const [state, setState] = useState<State>({ station: "", isComingToHosei: true, menuOpened: false });
+  const [now, setNow] = useState(new Date());
   const initUserInput = () => {
-    localStorage.clear()
-    localStorage.setItem("firstAccessed", "false")
+    localStorage.clear();
+    localStorage.setItem("firstAccessed", "false");
     setState(() => {
       return {
         station: "nishihachioji",
         isComingToHosei: true,
         menuOpened: false,
-      }
-    })
+      };
+    });
   }
-  const mainContainer = useRef(null)
-  const arrowsRef = useRef(null)
-  const departureRef = useRef(null)
-  const destinationRef = useRef(null)
-  const arrowsContainer = useRef(null)
+  const mainContainer = useRef(null);
+  const arrowsRef = useRef(null);
+  const departureRef = useRef(null);
+  const destinationRef = useRef(null);
+  const arrowsContainer = useRef(null);
   const animateArrows = useGSAP().contextSafe(() => {
-    gsap.fromTo(arrowsRef.current, { rotate: 0 }, { rotate: 180, duration: 0.3 })
-  })
+    gsap.fromTo(arrowsRef.current, { rotate: 0 }, { rotate: 180, duration: 0.3 });
+  });
   const animateDirectionButton = useGSAP().contextSafe(() => {
-    gsap.fromTo(arrowsContainer.current, { scale: 1.05 }, { scale: 1, duration: 0.3 })
-  })
-  const timesContainer = useRef(null)
-  const directionContainer = useRef(null)
-  const overlayContainer = useRef(null)
+    gsap.fromTo(arrowsContainer.current, { scale: 1.05 }, { scale: 1, duration: 0.3 });
+  });
+  const timesContainer = useRef(null);
+  const directionContainer = useRef(null);
+  const overlayContainer = useRef(null);
   const times = {
     economics: useRef(null),
     health: useRef(null),
     gym: useRef(null),
     sport: useRef(null),
-  }
+  };
   const animateText = useGSAP().contextSafe(() => {
-    gsap.fromTo(timesContainer.current, { opacity: 0, y: 10 }, { y: 0, duration: 0.3, opacity: 1, stagger: 0.01 })
-    gsap.fromTo(Object.values(times).map(ref => ref.current), { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1, stagger: 0.01 })
-
-  })
+    gsap.fromTo(timesContainer.current, { opacity: 0, y: 10 }, { y: 0, duration: 0.3, opacity: 1, stagger: 0.01 });
+    gsap.fromTo(Object.values(times).map(ref => ref.current), { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1, stagger: 0.01 });
+  });
   const stationRefs = {
     nishihachioji: useRef(null),
     mejirodai: useRef(null),
     aihara: useRef(null),
-  }
+  };
   const animateStationButton = useGSAP().contextSafe((station: string) => {
     if (station === "nishihachioji") {
-      gsap.fromTo(stationRefs.nishihachioji.current, { scale: 1.05 }, { scale: 1, duration: 0.3 })
-      gsap.to(stationRefs.mejirodai.current, { scale: 0.9, duration: 0.3 })
-      gsap.to(stationRefs.aihara.current, { scale: 0.9, duration: 0.3 })
-    } else if (station == "mejirodai") {
-      gsap.to(stationRefs.nishihachioji.current, { scale: 0.9, duration: 0.3 })
-      gsap.fromTo(stationRefs.mejirodai.current, { scale: 1.05 }, { scale: 1, duration: 0.3 })
-      gsap.to(stationRefs.aihara.current, { scale: 0.9, duration: 0.3 })
+      gsap.fromTo(stationRefs.nishihachioji.current, { scale: 1.05 }, { scale: 1, duration: 0.3 });
+      gsap.to(stationRefs.mejirodai.current, { scale: 0.9, duration: 0.3 });
+      gsap.to(stationRefs.aihara.current, { scale: 0.9, duration: 0.3 });
+    } else if (station === "mejirodai") {
+      gsap.to(stationRefs.nishihachioji.current, { scale: 0.9, duration: 0.3 });
+      gsap.fromTo(stationRefs.mejirodai.current, { scale: 1.05 }, { scale: 1, duration: 0.3 });
+      gsap.to(stationRefs.aihara.current, { scale: 0.9, duration: 0.3 });
     } else {
-      gsap.to(stationRefs.nishihachioji.current, { scale: 0.9, duration: 0.3 })
-      gsap.to(stationRefs.mejirodai.current, { scale: 0.9, duration: 0.3 })
-      gsap.fromTo(stationRefs.aihara.current, { scale: 1.05 }, { scale: 1, duration: 0.3 })
+      gsap.to(stationRefs.nishihachioji.current, { scale: 0.9, duration: 0.3 });
+      gsap.to(stationRefs.mejirodai.current, { scale: 0.9, duration: 0.3 });
+      gsap.fromTo(stationRefs.aihara.current, { scale: 1.05 }, { scale: 1, duration: 0.3 });
     }
-  })
-  const waribikiRef = useRef(null)
+  });
+  const waribikiRef = useRef(null);
   useGSAP(() => {
-    gsap.fromTo(waribikiRef.current, { scale: 0.95, duration: 1}, { scale: 1.05, duration: 1, yoyo: true, repeat: -1, ease: "power1.out" })
-  },[])
+    gsap.fromTo(waribikiRef.current, { scale: 0.95, duration: 1 }, { scale: 1.05, duration: 1, yoyo: true, repeat: -1, ease: "power1.out" });
+  }, []);
   useEffect(() => {
     if (localStorage.getItem("firstAccessed") !== "false") {
       initUserInput()
@@ -322,22 +322,23 @@ export default function Home() {
 
           {/* 三つ目のカード */}
           <div className="justify-center grid grid-cols-3 col-span-2 bg-white/20 dark:bg-black/30 shadow-lg mt-3 md:mt-0 p-2 py-auto rounded-2xl w-full font-semibold text-lg text-center hoverable:hover:scale-110">
-            {state.station === "nishihachioji" ? <button className="bg-black/80 dark:bg-white/80 shadow-lg rounded-xl h-12 text-white dark:text-black scale-90" onClick={() => {
+            <StationButton station="nishihachioji" onClick={() => {
               handleStationButtonClicked("nishihachioji")
-            }} ref={stationRefs.nishihachioji}>西八王子</button> : <button className="bg-black/50 dark:bg-white/50 shadow-lg rounded-xl h-12 text-white dark:text-black scale-90" onClick={() => {
-              handleStationButtonClicked("nishihachioji")
-            }} ref={stationRefs.nishihachioji}>西八王子</button>}
-            {state.station === "mejirodai" ? <button className="bg-black/80 dark:bg-white/80 shadow-lg rounded-xl h-12 text-white dark:text-black scale-90" onClick={() => {
+            }} selectedStation={state.station} ref={stationRefs.nishihachioji}>
+              西八王子
+            </StationButton>
+            <StationButton station="mejirodai" onClick={() => {
               handleStationButtonClicked("mejirodai")
-            }} ref={stationRefs.mejirodai}>めじろ台</button> : <button className="bg-black/50 dark:bg-white/50 shadow-lg rounded-xl h-12 text-white dark:text-black scale-90" onClick={() => {
-              handleStationButtonClicked("mejirodai")
-            }} ref={stationRefs.mejirodai}>めじろ台</button>}
-            {state.station === "aihara" ? <button className="bg-black/80 dark:bg-white/80 shadow-lg rounded-xl h-12 text-white dark:text-black scale-90" onClick={() => {
+            }} selectedStation={state.station} ref={stationRefs.mejirodai}>
+              めじろ台
+            </StationButton>
+            <StationButton station="aihara" onClick={() => {
               handleStationButtonClicked("aihara")
-            }} ref={stationRefs.aihara}>相原</button> : <button className="bg-black/50 dark:bg-white/50 shadow-lg rounded-xl h-12 text-white dark:text-black scale-90" onClick={() => {
-              handleStationButtonClicked("aihara")
-            }} ref={stationRefs.aihara}>相原</button>}
+            }} selectedStation={state.station} ref={stationRefs.aihara}>
+              相原
+            </StationButton>
           </div>
+
           {/* 割引ボタン */}
           <Link
             href="/discount"
@@ -346,8 +347,8 @@ export default function Home() {
             飲食店割引はこちら
           </Link>
         </div>
-          <p className="mx-auto mt-2 font-medium text-black text-center">時刻は目安であり、交通状況等による変わる可能性があります。<br />また臨時便等には対応しておりません。</p>
-          <p className="text-black text-center">©CODE MATES︎</p>
+        <p className="mx-auto mt-2 font-medium text-black text-center">時刻は目安であり、交通状況等による変わる可能性があります。<br />また臨時便等には対応しておりません。</p>
+        <p className="text-black text-center">©CODE MATES︎</p>
       </div>
     </>
   );
