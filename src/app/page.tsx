@@ -266,7 +266,7 @@ export default function Home() {
         </SheetContent>
 
       </Sheet>
-      <div className="bg-gradient-to-bl from-sky-400 dark:from-blue-500 to-orange-400 dark:to-orange-400 bg-fixed p-3 md:p-7 w-full h-full min-h-screen text-black dark:text-white">
+      <div className="bg-gradient-to-bl from-sky-400 dark:from-blue-500 to-orange-400 dark:to-orange-400 bg-scroll p-3 md:p-7 w-full h-full min-h-screen text-black dark:text-white">
         <Image alt="たまっぷのロゴ" src={logo} className="md:col-span-1 mx-auto -my-8 w-60 h-60" />
         <div className="gap-3 md:grid md:grid-cols-5 mx-auto p-3 max-w-5xl touch-manipulation" ref={mainContainer}>
           {/* 一つ目のカード */}
