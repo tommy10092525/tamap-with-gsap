@@ -242,11 +242,11 @@ export default function Home() {
         <SheetTrigger asChild>
           <button className="top-6 right-6 z-30 fixed bg-black/50 dark:bg-white/50 dark:bg-opacity-50 rounded-lg w-32 h-16 font-bold text-white dark:text-black" onClick={handleMenuButtonClicked}>Menu</button>
         </SheetTrigger>
-        <SheetContent className="bg-white/70 dark:bg-black/30">
-          <SheetTitle className="mt-3 text-xl text-center">Menu</SheetTitle>
-          <Link className="block bg-white/60 dark:bg-black/80 shadow mx-10 p-2 dark:border-2 dark:border-white rounded-lg text-black dark:text-white text-center hover:underline will-change-auto"
+        <SheetContent className="bg-blue-500/30 dark:bg-black/30 border-l-sky-400 dark:border-l-gray-600">
+          <SheetTitle className="mt-3 text-white text-xl text-center">Menu</SheetTitle>
+          <Link className="block bg-gray-900 dark:bg-black/80 shadow mx-10 p-2 border-2 dark:border-2 dark:border-white border-blue-700 rounded-lg text-white text-center hover:underline will-change-auto"
             href='https://docs.google.com/forms/d/e/1FAIpQLScPysPRj60-S2v_zmFjrQF6YKlS0Qe200GSO4LnEMsiVbXxYg/viewform?usp=sf_link'>アプリご意見</Link>
-          <p className="block bg-white/60 dark:bg-black/80 shadow mx-10 p-2 dark:border-2 dark:border-white rounded-lg text-black dark:text-white text-center hover:underline will-change-auto share-btn" onClick={async () => {
+          <p className="block bg-gray-900 dark:bg-black/80 shadow mx-10 p-2 border-2 dark:border-2 dark:border-white border-blue-700 rounded-lg text-white text-center hover:underline will-change-auto share-btn" onClick={async () => {
             if (navigator.share) {
               try {
                 await navigator.share({
@@ -259,10 +259,10 @@ export default function Home() {
               }
             }
           }}>アプリを共有</p>
-          <Link className="block bg-white/60 dark:bg-black/80 shadow mx-10 p-2 dark:border-2 dark:border-white rounded-lg text-black dark:text-white text-center hover:underline will-change-auto"
+          <Link className="block bg-gray-900 dark:bg-black/80 shadow mx-10 p-2 border-2 dark:border-2 dark:border-white border-blue-700 rounded-lg text-white text-center hover:underline will-change-auto"
             href='https://codemates123.github.io/homepage/'>CODE MATESとは</Link>
-          <a className="block bg-white/60 dark:bg-black/80 shadow mx-10 p-2 dark:border-2 dark:border-white rounded-lg text-black dark:text-white text-center hover:underline will-change-auto"
-            href='https://www.instagram.com/codemates_hosei?igsh=MTJvcmthMzUwOW90cg=='>Instagram</a>
+          <Link className="block bg-gray-900 dark:bg-black/80 shadow mx-10 p-2 border-2 dark:border-2 dark:border-white border-blue-700 rounded-lg text-white text-center hover:underline will-change-auto"
+            href='https://www.instagram.com/codemates_hosei?igsh=MTJvcmthMzUwOW90cg=='>Instagram</Link>
         </SheetContent>
 
       </Sheet>
