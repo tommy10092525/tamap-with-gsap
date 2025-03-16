@@ -92,7 +92,7 @@ export default function Home() {
   }, []);
   useGSAP(()=>{
     animateText()
-  },[state])
+  },[state.isComingToHosei,state.station])
   useGSAP(()=>{
     animateDirectionButton()
     animateArrows()
