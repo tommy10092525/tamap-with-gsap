@@ -166,10 +166,10 @@ export default function Home() {
 
   const { data: timetable, isLoading: isTimetableLoading } = useSWR(timetableApi, (key: string) => {
     return fetch(key).then((res) => res.json() as Promise<Timetable | null>)
-  })
+  },{revalidateOnFocus:false})
   const { data: holidayData, isLoading: isHolidayDataLoading } = useSWR(holidayDataAPi, (key: string) => {
     return fetch(key).then(res => res.json() as Promise<HolidayData | null>)
-  })
+  }, { revalidateOnFocus: false });
   let departure = "";
   let destination = "";
   const overlay = {
