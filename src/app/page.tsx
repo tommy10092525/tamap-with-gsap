@@ -354,7 +354,7 @@ export default function Home() {
           {/* 割引ボタン */}
           <Link
             href="/discount"
-            className="block col-span-3 bg-gradient-to-r from-pink-400 to-sky-300 shadow-lg md:m-0 my-4 p-3 border-2 border-gray-800 rounded-full w-full font-bold text-black text-3xl text-center"
+            className="block bg-gradient-to-r from-pink-500 via-purple-400 to-blue-500 shadow-lg md:m-0 my-4 p-3 border-2 border-gray-800 rounded-full w-full font-bold text-black text-3xl text-center"
             ref={waribikiRef}>
             飲食店割引はこちら
           </Link>
