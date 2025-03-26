@@ -265,9 +265,9 @@ export default function Home() {
       </Sheet>
       <div className="bg-gradient-to-bl from-sky-400 dark:from-blue-500 to-orange-400 dark:to-orange-400 bg-scroll p-3 md:p-7 w-full h-full min-h-screen text-black dark:text-white">
         <Image alt="たまっぷのロゴ" src="/tamap_logo.png" height={400} width={400} className="md:col-span-1 mx-auto -my-8 w-60 h-60" />
-        <div className="gap-3 md:grid md:grid-cols-5 mx-auto p-3 max-w-5xl touch-manipulation" ref={mainContainer}>
+        <div className="gap-3 md:grid md:grid-cols-2 mx-auto p-3 max-w-5xl touch-manipulation" ref={mainContainer}>
           {/* 一つ目のカード */}
-          <div className="col-span-2 bg-white/30 dark:bg-black/30 dark:bg-opacity-30 shadow-lg mt-4 p-2 rounded-2xl -full">
+          <div className="bg-white/30 dark:bg-black/30 dark:bg-opacity-30 shadow-lg mt-4 p-2 rounded-2xl w-full">
 
             {/* 行先表示 */}
             <div className="grid grid-cols-5 mx-auto mt-5 px-8 font-semibold text-xl text-center" ref={directionContainer}>
@@ -312,7 +312,7 @@ export default function Home() {
           </div>
 
           {/* 二つ目のカード */}
-          <div className="relative col-span-3 bg-white/20 dark:bg-black/30 shadow-lg mt-4 rounded-2xl w-full h-auto font-semibold text-lg hoverable:hover:scale-110 js-map-container" ref={overlayContainer}>
+          <div className="relative bg-white/20 dark:bg-black/30 shadow-lg mt-4 rounded-2xl w-full h-auto font-semibold text-lg hoverable:hover:scale-110 js-map-container" ref={overlayContainer}>
             <Image src="/Map.png" alt="地図のイラスト" width={300} className="mx-auto w-auto h-72" height={300} />
             <div className="top-4 left-4 absolute bg-white/70 dark:bg-black/50 shadow-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
               経済
@@ -333,7 +333,7 @@ export default function Home() {
           </div>
 
           {/* 三つ目のカード */}
-          <div className="justify-center grid grid-cols-3 col-span-2 bg-white/20 dark:bg-black/30 shadow-lg mt-3 md:mt-0 p-2 py-auto rounded-2xl w-full font-semibold text-lg text-center hoverable:hover:scale-110">
+          <div className="justify-center grid grid-cols-3 bg-white/20 dark:bg-black/30 shadow-lg mt-3 md:mt-0 p-2 py-auto rounded-2xl w-full font-semibold text-lg text-center hoverable:hover:scale-110">
             <StationButton station="nishihachioji" onClick={() => {
               handleStationButtonClicked("nishihachioji")
             }} selectedStation={state.station} ref={stationRefs.nishihachioji}>
