@@ -108,7 +108,7 @@ function findNextBuses({
         if (i > 0 || timeDifference({
           nowInMinutes,
           busInMinutes: busLeaveTime
-        }) <= 0) {
+        }) < 0) {
           nextBuses.push(bus)
         }
       }
