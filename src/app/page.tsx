@@ -256,9 +256,9 @@ export default function Home() {
               }
             }
           }}>アプリを共有</p>
-          <Link className="block bg-gray-900 dark:bg-black/80 shadow mx-10 p-2 border-2 dark:border-2 dark:border-white border-blue-700 rounded-lg text-white text-center hover:underline will-change-auto"
+          <Link className="block bg-gray-900 dark:bg-zinc-950/80 shadow-xl mx-10 p-2 border border-zinc-700 rounded-lg text-white text-center hover:underline will-change-auto"
             href='https://codemates123.github.io/homepage/'>CODE MATESとは</Link>
-          <Link className="block bg-gray-900 dark:bg-black/80 shadow mx-10 p-2 border-2 dark:border-2 dark:border-white border-blue-700 rounded-lg text-white text-center hover:underline will-change-auto"
+          <Link className="block bg-gray-900 dark:bg-zinc-950/80 shadow-xl mx-10 p-2 border border-zinc-700 rounded-lg text-white text-center hover:underline will-change-auto"
             href='https://www.instagram.com/codemates_hosei?igsh=MTJvcmthMzUwOW90cg=='>Instagram</Link>
         </SheetContent>
 
