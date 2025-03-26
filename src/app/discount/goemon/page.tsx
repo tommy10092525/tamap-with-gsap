@@ -1,5 +1,4 @@
 import React from 'react'
-import goemonImage from "../../../../public/goemon.jpg"
 import Image from 'next/image'
 import Link from 'next/link'
 const page = () => {
@@ -7,7 +6,7 @@ const page = () => {
     <div className='bg-gray-100 dark:bg-zinc-950 p-8 min-h-screen text-black dark:text-white'>
       <Link href="/discount" className='top-4 left-4 fixed p-2 border-2 border-rose-500 rounded-lg font-semibold text-lg'>戻る</Link>
       <div className='dark:bg-zinc-900 shadow-lg mx-auto mt-10 rounded-lg max-w-xl'>
-        <Image src={goemonImage} alt="吾衛門の画像" width={500} height={500} className='rounded-t-lg w-full' />
+        <Image src="/goemon.jpg" alt="吾衛門の画像" width={500} height={500} className='rounded-t-lg w-full' />
         <div className='px-5 py-4'>
           <p className='mt-2 font-bold text-2xl text-center'>吾衛門</p>
           <p className='mt-4'>法政大生に長く愛された西八王子駅近の有名ラーメン店で割引キャンペーン実施中！ 玉ねぎの甘みが感じられる八王子ラーメン、この機会にぜひお試しください！</p>

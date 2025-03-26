@@ -15,7 +15,7 @@ const StoreCard = ({storeName,storeImage,storeDescription,url,children}:StoreCar
       <div className='text-center'>
         <p className='text-md'>{storeDescription}</p>
         <p className='font-bold text-3xl'>{storeName}</p>
-        <p className='text-rose-500'>{children}</p>
+        <div className='text-rose-500'>{children}</div>
       </div>
     </Link>
   )

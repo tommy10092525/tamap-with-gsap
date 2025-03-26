@@ -1,5 +1,4 @@
 import React from 'react'
-import fujiImage from "../../../../public/fuji.jpg"
 import Image from 'next/image'
 import Link from 'next/link'
 const page = () => {
@@ -7,7 +6,7 @@ const page = () => {
     <div className='bg-gray-100 dark:bg-zinc-950 p-8 min-h-screen text-black dark:text-white'>
       <Link href="/discount" className='top-4 left-4 fixed p-2 border-2 border-rose-500 rounded-lg font-semibold text-lg'>戻る</Link>
       <div className='dark:bg-zinc-900 shadow-lg mx-auto mt-10 rounded-lg max-w-xl'>
-        <Image src={fujiImage} alt="うどん屋　藤の画像" width={500} height={500} className='rounded-t-lg w-full' />
+        <Image src="/fuji.jpg" alt="うどん屋　藤の画像" width={500} height={500} className='rounded-t-lg w-full' />
         <div className='px-5 py-4'>
           <p className='mt-2 font-bold text-2xl text-center'>藤</p>
           <p className='mt-4'>めじろ台駅からわずか徒歩１分！ランチタイムにリーズナブルな価格で本格的なうどんが食べられます！多種多様なうどんの他に、丼ものもあります！</p>

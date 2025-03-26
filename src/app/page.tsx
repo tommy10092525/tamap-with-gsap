@@ -1,8 +1,5 @@
 "use client"
 import Image from "next/image";
-import map from "../../public/Map.png"
-import logo from "../../public/tamap_logo.png"
-import arrow from "../../public/arrow.png"
 import { HolidayData, State, Timetable } from "./utils/types";
 import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
@@ -267,7 +264,7 @@ export default function Home() {
 
       </Sheet>
       <div className="bg-gradient-to-bl from-sky-400 dark:from-blue-500 to-orange-400 dark:to-orange-400 bg-scroll p-3 md:p-7 w-full h-full min-h-screen text-black dark:text-white">
-        <Image alt="たまっぷのロゴ" src={logo} className="md:col-span-1 mx-auto -my-8 w-60 h-60" />
+        <Image alt="たまっぷのロゴ" src="/tamap_logo.png" height={400} width={400} className="md:col-span-1 mx-auto -my-8 w-60 h-60" />
         <div className="gap-3 md:grid md:grid-cols-5 mx-auto p-3 max-w-5xl touch-manipulation" ref={mainContainer}>
           {/* 一つ目のカード */}
           <div className="col-span-2 bg-white/30 dark:bg-black/30 dark:bg-opacity-30 shadow-lg mt-4 p-2 rounded-2xl -full">
@@ -307,16 +304,16 @@ export default function Home() {
               handleDirectionButtonClicked()
             }} ref={arrowsContainer}>
               <span className="ml-2 w-auto" ref={arrowsRef}>
-                <Image src={arrow} alt="矢印" className="w-8 h-6" />
-                <Image src={arrow} alt="矢印" className="-mt-3 w-8 h-6 rotate-180" />
+                <Image src="/arrow.png" alt="矢印" width={32} height={32} className="w-8 h-6" />
+                <Image src="/arrow.png" alt="矢印" width={32} height={32} className="-mt-3 w-8 h-6 rotate-180" />
               </span>
               <span className="mt-1 w-full font-semibold text-lg">左右切替</span>
             </button>
           </div>
 
           {/* 二つ目のカード */}
-          <div className="relative col-span-3 bg-white/20 dark:bg-black/30 shadow-lg mt-4 js-map-container rounded-2xl w-full h-auto font-semibold text-lg hoverable:hover:scale-110" ref={overlayContainer}>
-            <Image src={map} alt="地図のイラスト" className="mx-auto w-auto h-72" />
+          <div className="relative col-span-3 bg-white/20 dark:bg-black/30 shadow-lg mt-4 rounded-2xl w-full h-auto font-semibold text-lg hoverable:hover:scale-110 js-map-container" ref={overlayContainer}>
+            <Image src="/Map.png" alt="地図のイラスト" width={300} className="mx-auto w-auto h-72" height={300} />
             <div className="top-4 left-4 absolute bg-white/70 dark:bg-black/50 shadow-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
               経済
               <span className="block" ref={times.economics}>{overlay.economics}</span>

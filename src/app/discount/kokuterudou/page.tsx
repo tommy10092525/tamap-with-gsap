@@ -1,14 +1,13 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import kokuterudoImage from '../../../../public/kokuterudou.jpg'
 
 const page = () => {
   return (
     <div className='bg-gray-100 dark:bg-zinc-950 p-8 min-h-screen text-black dark:text-white'>
       <Link href="/discount" className='top-4 left-4 fixed p-2 border-2 border-rose-500 rounded-lg font-semibold text-lg'>戻る</Link>
       <div className='dark:bg-zinc-900 shadow-lg mx-auto mt-10 rounded-lg max-w-xl'>
-        <Image src={kokuterudoImage} alt="コクテル堂の画像" width={500} height={500} className='rounded-t-lg w-full' />
+        <Image src="/kokuterudou.jpg" alt="コクテル堂の画像" width={500} height={500} className='rounded-t-lg w-full' />
         <div className='px-5 py-4'>
           <p className='mt-2 font-bold text-2xl text-center'>コクテル堂</p>
           <p className='font-semibold text-rose-400 text-lg'>割引内容</p>
