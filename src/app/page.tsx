@@ -84,24 +84,6 @@ export default function Home() {
     }
   });
   const waribikiRef = useRef(null);
-  useGSAP(() => {
-    gsap.fromTo(waribikiRef.current, { scale: 0.95, duration: 1 }, { scale: 1.05, duration: 1, yoyo: true, repeat: -1, ease: "power1.out" });
-  }, []);
-  useGSAP(()=>{
-    animateText()
-  },[state.isComingToHosei,state.station])
-  useGSAP(()=>{
-    animateDirectionButton()
-    animateArrows()
-    gsap.fromTo(directionContainer.current, { rotateY: 180, autoAlpha: 0 }, { rotateY: 0, duration: 0.3, autoAlpha: 1 })
-  },[state.isComingToHosei])
-  useGSAP(()=>{
-    if (state.isComingToHosei) {
-      gsap.fromTo(departureRef.current, { y: -20, autoAlpha: 0 }, { y: 0, duration: 0.3, autoAlpha: 1 })
-    } else {
-      gsap.fromTo(destinationRef.current, { y: -20, autoAlpha: 0 }, { y: 0, duration: 0.3, autoAlpha: 1 })
-    }
-  }, [state.station])
   useEffect(() => {
     if (localStorage.getItem("firstAccessed") !== "false") {
       initUserInput()
@@ -167,6 +149,25 @@ export default function Home() {
   const { data: holidayData, isLoading: isHolidayDataLoading } = useSWR(holidayDataAPi, (key: string) => {
     return fetch(key).then(res => res.json() as Promise<HolidayData | null>)
   }, { revalidateOnFocus: false });
+  useGSAP(() => {
+    gsap.fromTo(waribikiRef.current, { scale: 0.95, duration: 1 }, { scale: 1.05, duration: 1, yoyo: true, repeat: -1, ease: "power1.out" });
+  }, []);
+  useGSAP(()=>{
+    animateText()
+  },[state.isComingToHosei,state.station,isTimetableLoading&&isHolidayDataLoading])
+  useGSAP(()=>{
+    animateDirectionButton()
+    animateArrows()
+    gsap.fromTo(directionContainer.current, { rotateY: 180, autoAlpha: 0 }, { rotateY: 0, duration: 0.3, autoAlpha: 1 })
+  },[state.isComingToHosei])
+  useGSAP(()=>{
+    if (state.isComingToHosei) {
+      gsap.fromTo(departureRef.current, { y: -20, autoAlpha: 0 }, { y: 0, duration: 0.3, autoAlpha: 1 })
+    } else {
+      gsap.fromTo(destinationRef.current, { y: -20, autoAlpha: 0 }, { y: 0, duration: 0.3, autoAlpha: 1 })
+    }
+  }, [state.station])
+
   let departure = "";
   let destination = "";
   const overlay = {
