@@ -154,7 +154,7 @@ export default function Home() {
   }, []);
   useGSAP(()=>{
     animateText()
-  },[state.isComingToHosei,state.station,isTimetableLoading&&isHolidayDataLoading])
+  },[state.isComingToHosei,state.station,isTimetableLoading||isHolidayDataLoading])
   useGSAP(()=>{
     animateDirectionButton()
     animateArrows()
