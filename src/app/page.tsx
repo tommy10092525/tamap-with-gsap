@@ -64,26 +64,26 @@ export default function Home() {
     gsap.fromTo(timesContainer.current, { opacity: 0, y: 10 }, { y: 0, duration: 0.3, opacity: 1, stagger: 0.01 });
     gsap.fromTo(Object.values(times).map(ref => ref.current), { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1, stagger: 0.01 });
   });
-  const stationRefs = {
-    nishihachioji: useRef(null),
-    mejirodai: useRef(null),
-    aihara: useRef(null),
-  };
-  const animateStationButton = useGSAP().contextSafe((station: string) => {
-    if (station === "nishihachioji") {
-      gsap.fromTo(stationRefs.nishihachioji.current, { scale: 1.05 }, { scale: 1, duration: 0.3 });
-      gsap.to(stationRefs.mejirodai.current, { scale: 0.9, duration: 0.3 });
-      gsap.to(stationRefs.aihara.current, { scale: 0.9, duration: 0.3 });
-    } else if (station === "mejirodai") {
-      gsap.to(stationRefs.nishihachioji.current, { scale: 0.9, duration: 0.3 });
-      gsap.fromTo(stationRefs.mejirodai.current, { scale: 1.05 }, { scale: 1, duration: 0.3 });
-      gsap.to(stationRefs.aihara.current, { scale: 0.9, duration: 0.3 });
-    } else {
-      gsap.to(stationRefs.nishihachioji.current, { scale: 0.9, duration: 0.3 });
-      gsap.to(stationRefs.mejirodai.current, { scale: 0.9, duration: 0.3 });
-      gsap.fromTo(stationRefs.aihara.current, { scale: 1.05 }, { scale: 1, duration: 0.3 });
-    }
-  });
+  // const stationRefs = {
+  //   nishihachioji: useRef(null),
+  //   mejirodai: useRef(null),
+  //   aihara: useRef(null),
+  // };
+  // const animateStationButton = useGSAP().contextSafe((station: string) => {
+  //   if (station === "nishihachioji") {
+  //     gsap.fromTo(stationRefs.nishihachioji.current, { scale: 1.05 }, { scale: 1, duration: 0.3 });
+  //     gsap.to(stationRefs.mejirodai.current, { scale: 0.9, duration: 0.3 });
+  //     gsap.to(stationRefs.aihara.current, { scale: 0.9, duration: 0.3 });
+  //   } else if (station === "mejirodai") {
+  //     gsap.to(stationRefs.nishihachioji.current, { scale: 0.9, duration: 0.3 });
+  //     gsap.fromTo(stationRefs.mejirodai.current, { scale: 1.05 }, { scale: 1, duration: 0.3 });
+  //     gsap.to(stationRefs.aihara.current, { scale: 0.9, duration: 0.3 });
+  //   } else {
+  //     gsap.to(stationRefs.nishihachioji.current, { scale: 0.9, duration: 0.3 });
+  //     gsap.to(stationRefs.mejirodai.current, { scale: 0.9, duration: 0.3 });
+  //     gsap.fromTo(stationRefs.aihara.current, { scale: 1.05 }, { scale: 1, duration: 0.3 });
+  //   }
+  // });
   const waribikiRef = useRef(null);
   useEffect(() => {
     if (localStorage.getItem("firstAccessed") !== "false") {
@@ -134,7 +134,7 @@ export default function Home() {
   }
 
   const handleStationButtonClicked = (station: string) => {
-    animateStationButton(station)
+    // animateStationButton(station)
     setState(prev => {
       return {
         ...prev,
@@ -265,7 +265,7 @@ export default function Home() {
         </SheetContent>
 
       </Sheet>
-      <div className="bg-gradient-to-bl bg-fixed from-sky-500 dark:from-blue-500 to-orange-400 dark:to-orange-400 p-3 md:p-7 w-full min-h-screen text-black dark:text-white">
+      <div className="bg-gradient-to-bl from-sky-500 dark:from-blue-500 to-orange-400 dark:to-orange-400 bg-fixed p-3 md:p-7 w-full min-h-screen text-black dark:text-white">
         <Image alt="たまっぷのロゴ" src="/tamap_logo.png" height={400} width={400} className="md:col-span-1 mx-auto -my-8 w-60 h-60" />
         <div className="gap-3 grid mx-auto p-3 max-w-2xl touch-manipulation" ref={mainContainer}>
           {/* 一つ目のカード */}
@@ -316,7 +316,7 @@ export default function Home() {
           {/* 二つ目のカード */}
           <Card>
             <div className="relative font-semibold text-lg text-center">
-              <Image src="/Map.png" alt="地図のイラスト" width={300} className="mx-auto object-cover opacity-70" height={300} />
+              <Image src="/Map.png" alt="地図のイラスト" width={300} className="opacity-70 mx-auto object-cover" height={300} />
               <Card className="top-0 left-0 absolute w-1/3 h-16">
                 経済
                 <span className="block" ref={times.economics}>{overlay.economics}</span>
@@ -329,7 +329,7 @@ export default function Home() {
                 体育館
                 <span className="block" ref={times.gym}>{overlay.gym}</span>
               </Card>
-              <Card className="bottom-0 right-0 absolute w-1/3 h-16">
+              <Card className="right-0 bottom-0 absolute w-1/3 h-16">
                 スポ健康
                 <span className="block" ref={times.sport}>{overlay.sport}</span>
               </Card>
@@ -338,20 +338,20 @@ export default function Home() {
 
           {/* 三つ目のカード */}
           <Card>
-            <div className="grid grid-cols-3 font-semibold text-lg">
+            <div className="gap-3 grid grid-cols-3 font-semibold text-lg text-center">
               <StationButton station="nishihachioji" onClick={() => {
                 handleStationButtonClicked("nishihachioji")
-              }} selectedStation={state.station} ref={stationRefs.nishihachioji}>
+              }} selectedStation={state.station}>
               西八王子
             </StationButton>
             <StationButton station="mejirodai" onClick={() => {
               handleStationButtonClicked("mejirodai")
-            }} selectedStation={state.station} ref={stationRefs.mejirodai}>
+            }} selectedStation={state.station} >
               めじろ台
             </StationButton>
             <StationButton station="aihara" onClick={() => {
               handleStationButtonClicked("aihara")
-              }} selectedStation={state.station} ref={stationRefs.aihara}>
+              }} selectedStation={state.station} >
                 相原
               </StationButton>
             </div>
