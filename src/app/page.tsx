@@ -53,7 +53,7 @@ export default function Home() {
   });
   const timesContainer = useRef(null);
   const directionContainer = useRef(null);
-  const overlayContainer = useRef(null);
+  // const overlayContainer = useRef(null);
   const times = {
     economics: useRef(null),
     health: useRef(null),
@@ -146,22 +146,22 @@ export default function Home() {
 
   const { data: timetable, isLoading: isTimetableLoading } = useSWR(timetableApi, (key: string) => {
     return fetch(key).then((res) => res.json() as Promise<Timetable | null>)
-  },{revalidateOnFocus:false})
+  }, { revalidateOnFocus: false })
   const { data: holidayData, isLoading: isHolidayDataLoading } = useSWR(holidayDataAPi, (key: string) => {
     return fetch(key).then(res => res.json() as Promise<HolidayData | null>)
   }, { revalidateOnFocus: false });
   useGSAP(() => {
     gsap.fromTo(waribikiRef.current, { scale: 0.95, duration: 1 }, { scale: 1.05, duration: 1, yoyo: true, repeat: -1, ease: "power1.out" });
   }, []);
-  useGSAP(()=>{
+  useGSAP(() => {
     animateText()
-  },[state.isComingToHosei,state.station,isTimetableLoading||isHolidayDataLoading])
-  useGSAP(()=>{
+  }, [state.isComingToHosei, state.station, isTimetableLoading || isHolidayDataLoading])
+  useGSAP(() => {
     animateDirectionButton()
     animateArrows()
     gsap.fromTo(directionContainer.current, { rotateY: 180, autoAlpha: 0 }, { rotateY: 0, duration: 0.3, autoAlpha: 1 })
-  },[state.isComingToHosei])
-  useGSAP(()=>{
+  }, [state.isComingToHosei])
+  useGSAP(() => {
     if (state.isComingToHosei) {
       gsap.fromTo(departureRef.current, { y: -20, autoAlpha: 0 }, { y: 0, duration: 0.3, autoAlpha: 1 })
     } else {
@@ -265,11 +265,11 @@ export default function Home() {
         </SheetContent>
 
       </Sheet>
-      <div className="bg-gradient-to-bl from-sky-400 dark:from-blue-500 to-orange-400 dark:to-orange-400 bg-scroll p-3 md:p-7 w-full h-full min-h-screen text-black dark:text-white">
+      <div className="bg-gradient-to-bl bg-fixed from-sky-500 dark:from-blue-500 to-orange-400 dark:to-orange-400 p-3 md:p-7 w-full min-h-screen text-black dark:text-white">
         <Image alt="たまっぷのロゴ" src="/tamap_logo.png" height={400} width={400} className="md:col-span-1 mx-auto -my-8 w-60 h-60" />
-        <div className="gap-3 md:grid md:grid-cols-2 mx-auto p-3 max-w-5xl touch-manipulation" ref={mainContainer}>
+        <div className="gap-3 grid mx-auto p-3 max-w-2xl touch-manipulation" ref={mainContainer}>
           {/* 一つ目のカード */}
-          <div className="bg-white/30 dark:bg-black/30 dark:bg-opacity-30 shadow-lg mt-4 p-2 rounded-2xl w-full">
+          <Card>
 
             {/* 行先表示 */}
             <div className="grid grid-cols-5 mx-auto mt-5 px-8 font-semibold text-xl text-center" ref={directionContainer}>
@@ -280,25 +280,25 @@ export default function Home() {
             {/* 時刻一覧 */}
             <div className="" ref={timesContainer}>
               {previousBuses.length > 0 ? previousBuses.map((item, i) => {
-                return <div className="grid grid-cols-2 opacity-50 my-4 font-sans font-semibold text-lg md:text-2xl text-center" key={i}>
-                  <p className="mx-auto -my-2 w-1/2">{item ? minutesToTime(item.leaveHour * 60 + item.leaveMinute) : "--:--"}</p>
-                  <p className="mx-auto -my-2 w-1/2">{item ? minutesToTime(item.arriveHour * 60 + item.arriveMinute) : "--:--"}</p>
+                return <div className="grid grid-cols-2 opacity-50 -my-1 font-sans font-semibold text-lg md:text-2xl text-center" key={i}>
+                  <p className="mx-auto">{item ? minutesToTime(item.leaveHour * 60 + item.leaveMinute) : "--:--"}</p>
+                  <p className="mx-auto">{item ? minutesToTime(item.arriveHour * 60 + item.arriveMinute) : "--:--"}</p>
                 </div>
               }) : Array.from({ length: 2 }).map((_, i) => {
-                return <div className="grid grid-cols-2 opacity-50 my-4 font-sans font-semibold text-lg md:text-2xl text-center" key={i}>
-                  <p className="mx-auto -my-2 w-1/2">--:--</p>
-                  <p className="mx-auto -my-2 w-1/2">--:--</p>
+                return <div className="grid grid-cols-2 opacity-50 -my-1 font-sans font-semibold text-lg md:text-2xl text-center" key={i}>
+                  <p className="mx-auto">--:--</p>
+                  <p className="mx-auto">--:--</p>
                 </div>
               })}
               {futureBuses.length > 0 ? futureBuses.map((item, i) => {
-                return <div className="grid grid-cols-2 my-4 font-sans font-semibold text-3xl md:text-4xl text-center" key={i}>
-                  <p className="mx-auto -my-2 w-1/2">{item ? minutesToTime(item.leaveHour * 60 + item.leaveMinute) : "--:--"}</p>
-                  <p className="mx-auto -my-2 w-1/2">{item ? minutesToTime(item.arriveHour * 60 + item.arriveMinute) : "--:--"}</p>
+                return <div className="grid grid-cols-2 -my-1 font-sans font-semibold text-3xl md:text-4xl text-center" key={i}>
+                  <p className="mx-auto">{item ? minutesToTime(item.leaveHour * 60 + item.leaveMinute) : "--:--"}</p>
+                  <p className="mx-auto">{item ? minutesToTime(item.arriveHour * 60 + item.arriveMinute) : "--:--"}</p>
                 </div>
               }) : Array.from({ length: 3 }).map((_, i) => {
-                return <div className="grid grid-cols-2 my-4 font-sans font-semibold text-3xl md:text-4xl text-center" key={i}>
-                  <p className="mx-auto -my-2 w-1/2">--:--</p>
-                  <p className="mx-auto -my-2 w-1/2">--:--</p>
+                return <div className="grid grid-cols-2 -my-1 font-sans font-semibold text-3xl md:text-4xl text-center" key={i}>
+                  <p className="mx-auto">--:--</p>
+                  <p className="mx-auto">--:--</p>
                 </div>
               })}
             </div>
@@ -311,34 +311,37 @@ export default function Home() {
               </span>
               <span className="mt-1 w-full font-semibold text-lg">左右切替</span>
             </button>
-          </div>
+          </Card>
 
           {/* 二つ目のカード */}
-          <div className="relative bg-white/20 dark:bg-black/30 shadow-lg mt-4 rounded-2xl w-full h-auto font-semibold text-lg hoverable:hover:scale-110 js-map-container" ref={overlayContainer}>
-            <Image src="/Map.png" alt="地図のイラスト" width={300} className="mx-auto w-auto h-72" height={300} />
-            <div className="top-4 left-4 absolute bg-white/70 dark:bg-black/50 shadow-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
-              経済
-              <span className="block" ref={times.economics}>{overlay.economics}</span>
+          <Card>
+            <div className="relative font-semibold text-lg text-center">
+              <Image src="/Map.png" alt="地図のイラスト" width={300} className="mx-auto object-cover opacity-70" height={300} />
+              <Card className="top-0 left-0 absolute w-1/3 h-16">
+                経済
+                <span className="block" ref={times.economics}>{overlay.economics}</span>
+              </Card>
+              <Card className="top-0 right-0 absolute w-1/3 h-16">
+                社・現福
+                <span className="block" ref={times.health}>{overlay.health}</span>
+              </Card>
+              <Card className="bottom-0 left-0 absolute w-1/3 h-16">
+                体育館
+                <span className="block" ref={times.gym}>{overlay.gym}</span>
+              </Card>
+              <Card className="bottom-0 right-0 absolute w-1/3 h-16">
+                スポ健康
+                <span className="block" ref={times.sport}>{overlay.sport}</span>
+              </Card>
             </div>
-            <div className="top-4 right-4 absolute bg-white/70 dark:bg-black/50 shadow-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
-              社・現福
-              <span className="block" ref={times.health}>{overlay.health}</span>
-            </div>
-            <div className="bottom-4 left-4 absolute bg-white/70 dark:bg-black/50 shadow-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
-              体育館
-              <span className="block" ref={times.gym}>{overlay.gym}</span>
-            </div>
-            <div className="right-4 bottom-4 absolute bg-white/70 dark:bg-black/50 shadow-lg p-2 rounded-lg w-1/4 max-sm:w-1/3 h-16 overflow-hidden text-center will-change-auto">
-              スポ健康
-              <span className="block" ref={times.sport}>{overlay.sport}</span>
-            </div>
-          </div>
+          </Card>
 
           {/* 三つ目のカード */}
-          <div className="justify-center grid grid-cols-3 bg-white/20 dark:bg-black/30 shadow-lg mt-3 md:mt-0 p-2 py-auto rounded-2xl w-full font-semibold text-lg text-center hoverable:hover:scale-110">
-            <StationButton station="nishihachioji" onClick={() => {
-              handleStationButtonClicked("nishihachioji")
-            }} selectedStation={state.station} ref={stationRefs.nishihachioji}>
+          <Card>
+            <div className="grid grid-cols-3 font-semibold text-lg">
+              <StationButton station="nishihachioji" onClick={() => {
+                handleStationButtonClicked("nishihachioji")
+              }} selectedStation={state.station} ref={stationRefs.nishihachioji}>
               西八王子
             </StationButton>
             <StationButton station="mejirodai" onClick={() => {
@@ -348,15 +351,16 @@ export default function Home() {
             </StationButton>
             <StationButton station="aihara" onClick={() => {
               handleStationButtonClicked("aihara")
-            }} selectedStation={state.station} ref={stationRefs.aihara}>
-              相原
-            </StationButton>
-          </div>
+              }} selectedStation={state.station} ref={stationRefs.aihara}>
+                相原
+              </StationButton>
+            </div>
+          </Card>
 
           {/* 割引ボタン */}
           <Link
             href="/discount"
-            className="block bg-gradient-to-r from-pink-500 via-purple-400 to-blue-500 shadow-lg md:m-0 my-4 p-3 border-2 border-gray-800 rounded-full w-full font-bold text-black text-3xl text-center"
+            className="block bg-gradient-to-r from-red-500 to-blue-500 shadow-lg md:m-0 my-2 p-3 border-2 border-white/30 rounded-full w-full font-bold text-white text-3xl text-center"
             ref={waribikiRef}>
             飲食店割引はこちら
           </Link>
