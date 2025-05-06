@@ -290,7 +290,7 @@ export default function Home() {
           {/* 二つ目のカード */}
           <Card>
             <div className="relative font-semibold text-lg text-center">
-              <Image src="/Map.png" alt="地図のイラスト" width={300} className="opacity-70 mx-auto object-cover" height={300} />
+              <Image src="/Map.png" alt="地図のイラスト" width={300} className="opacity-70 mx-auto h-48 object-cover" height={300} />
               <Card className="top-0 left-0 absolute w-1/3 h-16">
                 経済
                 <span className="block" ref={times.economics}>{overlay.economics}</span>
