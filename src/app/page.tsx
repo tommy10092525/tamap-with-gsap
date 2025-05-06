@@ -1,9 +1,9 @@
 "use client"
 import Image from "next/image";
-import { HolidayData, State, Timetable } from "./utils/types";
+import { State, Timetable } from "./utils/types";
 import { useEffect, useRef, useState } from "react";
-import useSWR from "swr";
-import { timetableApi, holidayDataAPi, } from "./utils/constants";
+// import useSWR from "swr";
+// import { timetableApi, holidayDataAPi, } from "./utils/constants";
 import { dayIndices, findNextBuses, minutesToTime } from "./utils/timeHandlers";
 import { buildings } from "./utils/constants";
 import gsap from "gsap"
@@ -20,6 +20,8 @@ import {
 } from "@/components/ui/sheet";
 import StationButton from "@/components/ui/station-button";
 import Card from "@/components/ui/card"
+import timetable from "./utils/TimeTable.json"
+import holidayData from "./utils/Holidays.json"
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
@@ -64,26 +66,6 @@ export default function Home() {
     gsap.fromTo(timesContainer.current, { opacity: 0, y: 10 }, { y: 0, duration: 0.3, opacity: 1, stagger: 0.01 });
     gsap.fromTo(Object.values(times).map(ref => ref.current), { opacity: 0, y: 5 }, { y: 0, duration: 0.3, opacity: 1, stagger: 0.01 });
   });
-  // const stationRefs = {
-  //   nishihachioji: useRef(null),
-  //   mejirodai: useRef(null),
-  //   aihara: useRef(null),
-  // };
-  // const animateStationButton = useGSAP().contextSafe((station: string) => {
-  //   if (station === "nishihachioji") {
-  //     gsap.fromTo(stationRefs.nishihachioji.current, { scale: 1.05 }, { scale: 1, duration: 0.3 });
-  //     gsap.to(stationRefs.mejirodai.current, { scale: 0.9, duration: 0.3 });
-  //     gsap.to(stationRefs.aihara.current, { scale: 0.9, duration: 0.3 });
-  //   } else if (station === "mejirodai") {
-  //     gsap.to(stationRefs.nishihachioji.current, { scale: 0.9, duration: 0.3 });
-  //     gsap.fromTo(stationRefs.mejirodai.current, { scale: 1.05 }, { scale: 1, duration: 0.3 });
-  //     gsap.to(stationRefs.aihara.current, { scale: 0.9, duration: 0.3 });
-  //   } else {
-  //     gsap.to(stationRefs.nishihachioji.current, { scale: 0.9, duration: 0.3 });
-  //     gsap.to(stationRefs.mejirodai.current, { scale: 0.9, duration: 0.3 });
-  //     gsap.fromTo(stationRefs.aihara.current, { scale: 1.05 }, { scale: 1, duration: 0.3 });
-  //   }
-  // });
   const waribikiRef = useRef(null);
   useEffect(() => {
     if (localStorage.getItem("firstAccessed") !== "false") {
@@ -143,19 +125,12 @@ export default function Home() {
     })
 
   }
-
-  const { data: timetable, isLoading: isTimetableLoading } = useSWR(timetableApi, (key: string) => {
-    return fetch(key).then((res) => res.json() as Promise<Timetable | null>)
-  }, { revalidateOnFocus: false })
-  const { data: holidayData, isLoading: isHolidayDataLoading } = useSWR(holidayDataAPi, (key: string) => {
-    return fetch(key).then(res => res.json() as Promise<HolidayData | null>)
-  }, { revalidateOnFocus: false });
   useGSAP(() => {
     gsap.fromTo(waribikiRef.current, { scale: 0.95, duration: 1 }, { scale: 1.05, duration: 1, yoyo: true, repeat: -1, ease: "power1.out" });
   }, []);
   useGSAP(() => {
     animateText()
-  }, [state.isComingToHosei, state.station, isTimetableLoading || isHolidayDataLoading])
+  }, [state.isComingToHosei, state.station])
   useGSAP(() => {
     animateDirectionButton()
     animateArrows()
@@ -179,55 +154,54 @@ export default function Home() {
   }
   let previousBuses: Timetable = []
   let futureBuses: Timetable = []
-  if (!isTimetableLoading && !isHolidayDataLoading && timetable && holidayData) {
-    const currentDayIndex = now.getDay()
-    const currentDay = dayIndices[currentDayIndex]
-    const currentHour = now.getHours()
-    const currentMinutes = now.getMinutes()
-    previousBuses = findNextBuses({
-      timeTable: structuredClone(timetable),
-      station: state.station,
-      isComingToHosei: state.isComingToHosei,
-      holidayData,
-      currentDay,
-      currentHour,
-      currentMinutes,
-      currentDate: new Date(),
-      length: -2
-    })
-    futureBuses = findNextBuses({
-      timeTable: structuredClone(timetable),
-      station: state.station,
-      isComingToHosei: state.isComingToHosei,
-      holidayData,
-      currentDay,
-      currentHour,
-      currentMinutes,
-      currentDate: new Date(),
-      length: 3
-    })
-    const [nextBus] = futureBuses
-    if (state.station == "nishihachioji") {
-      departure = "西八王子"
-    } else if (state.station == "mejirodai") {
-      departure = "めじろ台"
-    } else if (state.station == "aihara") {
-      departure = "相原"
-    } else {
-      departure = "西八王子"
-    }
-    destination = "法政大学"
-    if (!state.isComingToHosei) {
-      [departure, destination] = [destination, departure]
-    }
-    if (state.isComingToHosei && nextBus) {
-      overlay.economics = minutesToTime(nextBus.arriveHour * 60 + nextBus.arriveMinute + buildings.economics)
-      overlay.health = minutesToTime(nextBus.arriveHour * 60 + nextBus.arriveMinute + buildings.health)
-      overlay.sport = minutesToTime(nextBus.arriveHour * 60 + nextBus.arriveMinute + buildings.sport)
-      overlay.gym = minutesToTime(nextBus.arriveHour * 60 + nextBus.arriveMinute + buildings.gym)
-    }
-
+  const currentDayIndex = now.getDay()
+  const currentDay = dayIndices[currentDayIndex]
+  const currentHour = now.getHours()
+  const currentMinutes = now.getMinutes()
+  previousBuses = findNextBuses({
+    timeTable: JSON.parse(JSON.stringify(timetable)),
+    station: state.station,
+    isComingToHosei: state.isComingToHosei,
+    holidayData:JSON.parse(JSON.stringify(holidayData)),
+    currentDay,
+    currentHour,
+    currentMinutes,
+    currentDate: new Date(),
+    length: -2
+  })
+  futureBuses = findNextBuses({
+    timeTable: JSON.parse(JSON.stringify(timetable)),
+    station: state.station,
+    isComingToHosei: state.isComingToHosei,
+    holidayData:JSON.parse(JSON.stringify(holidayData)),
+    currentDay,
+    currentHour,
+    currentMinutes,
+    currentDate: new Date(),
+    length: 3
+  })
+  const [nextBus] = futureBuses
+  if (state.station == "nishihachioji") {
+    departure = "西八王子"
+  } else if (state.station == "mejirodai") {
+    departure = "めじろ台"
+  } else if (state.station == "aihara") {
+    departure = "相原"
+  } else {
+    departure = "西八王子"
   }
+  destination = "法政大学"
+  if (!state.isComingToHosei) {
+    [departure, destination] = [destination, departure]
+  }
+  if (state.isComingToHosei && nextBus) {
+    overlay.economics = minutesToTime(nextBus.arriveHour * 60 + nextBus.arriveMinute + buildings.economics)
+    overlay.health = minutesToTime(nextBus.arriveHour * 60 + nextBus.arriveMinute + buildings.health)
+    overlay.sport = minutesToTime(nextBus.arriveHour * 60 + nextBus.arriveMinute + buildings.sport)
+    overlay.gym = minutesToTime(nextBus.arriveHour * 60 + nextBus.arriveMinute + buildings.gym)
+  }
+
+
   return (
     <>
       {/* 時計 */}
@@ -342,15 +316,15 @@ export default function Home() {
               <StationButton station="nishihachioji" onClick={() => {
                 handleStationButtonClicked("nishihachioji")
               }} selectedStation={state.station}>
-              西八王子
-            </StationButton>
-            <StationButton station="mejirodai" onClick={() => {
-              handleStationButtonClicked("mejirodai")
-            }} selectedStation={state.station} >
-              めじろ台
-            </StationButton>
-            <StationButton station="aihara" onClick={() => {
-              handleStationButtonClicked("aihara")
+                西八王子
+              </StationButton>
+              <StationButton station="mejirodai" onClick={() => {
+                handleStationButtonClicked("mejirodai")
+              }} selectedStation={state.station} >
+                めじろ台
+              </StationButton>
+              <StationButton station="aihara" onClick={() => {
+                handleStationButtonClicked("aihara")
               }} selectedStation={state.station} >
                 相原
               </StationButton>
