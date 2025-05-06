@@ -13,11 +13,11 @@ const page = () => {
         </Link>
         <h1 className='font-bold text-2xl text-center'>たまっぷ 提携店舗一覧</h1>
       </header>
-      <div className='gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-16 p-8'>
+      <div className='gap-8 grid grid-cols-1 md:grid-cols-2 mx-auto mt-16 p-8 max-w-5xl'>
         {[
           { storeName: '藤', storeImage: '/fuji.jpg', storeDescription: 'めじろ台　うどん屋', url: '/discount/fuji', children: <p>普通盛り50円引き<br />大盛無料</p> },
           { storeName: 'ハイチーズ', storeImage: '/hicheese.jpg', storeDescription: '八王子　チーズ料理', url: '/discount/hicheese', children: <p>ランチソフトドリンク無料<br />コースディナー500円引き<br />飲み放題30分延長</p> },
-          { storeName: '吾衛門', storeImage: '/goemon.jpg', storeDescription: '西八王子　ラーメン店', url: '/discount/goemon', children: <p>大盛無料</p> },
+          // { storeName: '吾衛門', storeImage: '/goemon.jpg', storeDescription: '西八王子　ラーメン店', url: '/discount/goemon', children: <p>大盛無料</p> },
           { storeName: 'コクテル堂', storeImage: '/kokuterudou.jpg', storeDescription: '橋本　カフェ', url: '/discount/kokuterudou', children: <p>ケーキ×ドリンクのセット<br />さらに100円引き</p> }
         ].map((store, index) => (
           <StoreCard key={index} {...store} />
