@@ -33,7 +33,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <NextTopLoader color="oklch(62.3% 0.214 259.815)" />
+        <NextTopLoader color="oklch(62.3% 0.214 259.815)" height={5}/>
           {children}
         </ThemeProvider>
       </body>
